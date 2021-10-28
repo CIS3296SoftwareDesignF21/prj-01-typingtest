@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { words } from "./words.json";
+import TypingTest from './components/TypingTest';
 import './App.css';
 
 function App() {
 
-  const [key, setKey] = useState(0)
+  const [index, setIndex] = useState(0);
 
   const onKeyPress = (event) => {
-    console.log(event.keyCode)
-    setKey(event.keyCode)
-  }
+    console.log("Current key: ", event.key);
+
+    switch (event.key) {
+			
+      // case " ":
+			// 	break;
+
+      case "Backspace":
+        break;
+
+			default:
+        if(event.key === words[index]){
+          setIndex((index) => index + 1);
+        }
+				break;
+		}
+	};
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
@@ -16,13 +32,16 @@ function App() {
     return () => {
       document.removeEventListener('keydown', onKeyPress);
     };
-  }, [])
+  }, [index])
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>{String.fromCharCode(key)}</p>
       </header>
+      <div className="landing">
+        <TypingTest words={words} index={index}/>
+        <button onClick = {() => setIndex(0)}>reset</button>
+      </div>
     </div>
   );
 }
