@@ -35,3 +35,6 @@ Because this project is a typing test, the team arranged what we thought were th
 By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
 To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
 
+## Download
+[0.1.0](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing)
+
