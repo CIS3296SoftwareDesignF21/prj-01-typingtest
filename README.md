@@ -25,7 +25,7 @@ npm run electron-dev
 npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
 ```
 ## How to Install
-
+N/A
 ## Vision Statement
 
 Our vision for this project is to achieve a feature-rich program with an elegant user interface. 
