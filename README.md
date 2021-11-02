@@ -1,6 +1,12 @@
 # Project 
--A short description of your project
--The goal of the Typing Test project is to test the user and challenge their typing skills. 
+-Project Proposal
+
+Link: https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14
+
+
+-A short description of your project:
+
+The goal of the Typing Test project is to test the user and challenge their typing skills. 
 The team will be making a typing application, which will give the user a trial containing a set of words they must type out.
 If the user types in the wrong word prompt, the program will not allow the user to progress until the user has correctly typed the given word.
 The program will also keep track of all the errors made by the user, and present stats of how well they did at the end of the test.
