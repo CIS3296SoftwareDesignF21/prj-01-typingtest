@@ -86,6 +86,13 @@
     cursor: pointer;
 }
 
-.timer-wrapper .countdown{
+.timer-wrapper .timer{
     font-size: 50px;
+}
+
+.countdown{
+    position: absolute;
+    color:#50E3C2;
+    font-size: 150px;
+    font-weight: 500;
 }

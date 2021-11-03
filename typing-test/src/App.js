@@ -12,19 +12,16 @@ function App() {
   const [index, setIndex] = useState(0);
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
-  // const [timerState, setTimerState] = useState(false);
-
-  const childFunc = React.useRef(null);
+  const [inCountdown, setInCountdown] = useState(false)
 
   const onKeyPress = (event) => {
-    console.log("Current key: ", event.key);
-    console.log(timerActive);
 
     switch (event.key) {
 
       case "Enter":
         if (!timerActive) {
           setTimerActive(true);
+          setInCountdown(true);
         }
         break;
 
@@ -32,7 +29,7 @@ function App() {
         break;
 
       default:
-        if (event.key === words[index] && timerActive) {
+        if (event.key === words[index] && timerActive && !inCountdown) {
           setIndex((index) => index + 1);
         }
         break;
@@ -49,7 +46,7 @@ function App() {
     return () => {
       document.removeEventListener('keydown', onKeyPress);
     };
-  }, [index, timerActive])
+  }, [index, timerActive, inCountdown])
 
   return (
     <div className="App">
@@ -65,8 +62,9 @@ function App() {
             <TypingTest
               timerActive={timerActive}
               setTimerActive={setTimerActive}
+              inCountdown={inCountdown}
+              setInCountdown={setInCountdown}
               setIndex={setIndex}
-              childFunc={childFunc}
               words={words}
               index={index}
             />
