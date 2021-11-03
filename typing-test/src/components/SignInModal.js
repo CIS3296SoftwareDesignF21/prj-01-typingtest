@@ -1,21 +1,28 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import "../stylesheets/SignInModal.css"
 import { useSpring, animated } from 'react-spring';
 //npm install react-spring
-import {MdClose} from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 // npm install material-design-icons
+// npm install react-icons
 
 const SignInModal = ({ showSignIn, setShowSignIn }) => {
 
     const modalRef = useRef();
 
-      const animation = useSpring({
+    const [showSignUp, setShowSignUp] = useState(false);
+
+    const animation = useSpring({
         config: {
-          duration: 175
+            duration: 175
         },
         opacity: showSignIn ? 1 : 0,
         transform: showSignIn ? `translateY(0%)` : `translateY(+100%)`
-      });
+    });
+
+    const openSignUp = () => {
+        setShowSignUp(prev => !prev);
+    };
 
     const closeModal = e => {
         if (modalRef.current === e.target) {
@@ -44,7 +51,7 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
         <>
             {showSignIn ? (
                 <div className='Background' onClick={closeModal} ref={modalRef}>
-                    <animated.div style={animation}>
+                    <animated.div >
                         <div className='ModalWrapper' showSignIn={showSignIn}>
                             <MdClose
                                 aria-label='Close modal'
@@ -52,8 +59,17 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
                                 onClick={() => setShowSignIn(prev => !prev)}
                             />
                             <div className='ModalContent'>
-                                <h1>Sign In</h1>
-                                <p>Sign in and start tracking your typing skills!</p>
+                                {showSignUp ? <h1>Sign Up</h1> : <h1>Login</h1>}
+                                
+                                {showSignUp ? <div className='form-inputs'>
+                                    <input
+                                        className='form-input'
+                                        type='text'
+                                        name='Email'
+                                        placeholder='Email'
+                                    />
+                                </div>
+                                : null}
                                 <div className='form-inputs'>
                                     <input
                                         className='form-input'
@@ -71,16 +87,12 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
                                     />
                                 </div>
                                 <div className='sign-in-options'>
-                                    <div className='remember-me'>
-                                        <input className='check-box' type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                        <label for="vehicle1"> I have a bike</label>
-                                    </div>
-                                    <div className='account-links'>   
-                                        <div className='individual'>Forgot password?</div>
-                                        <div className='individual'>Register account</div>
+                                    <div className='account-links'>
+                                        {showSignUp ? null : <div className='individual'>Forgot password?</div>}
+                                        <div onClick={openSignUp} className='individual'>{showSignUp ? 'Already have account? Login' : 'Register account'}</div>
                                     </div>
                                 </div>
-                                <button type="button" className="sign-in-button">Join Now</button>
+                                <button type="button" className="sign-in-button">{showSignUp ? 'Sign up' : 'Login'}</button>
                             </div>
 
                         </div>

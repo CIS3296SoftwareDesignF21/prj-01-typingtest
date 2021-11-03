@@ -1,5 +1,6 @@
 const { app, BrowserWindow, shell } = require('electron')
 const isDev = require("electron-is-dev");
+const path = require('path')
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension, REACT_DEVELOPER_TOOLS; // NEW!
@@ -21,9 +22,13 @@ function createWindow (width, height) {
     width,
     height,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: false, // is default value after Electron v5
+      contextIsolation: true, // protect against prototype pollution
+      enableRemoteModule: false, // turn off remote
+      // preload: path.join(__dirname, 'preload.js'), 
     },
     autoHideMenuBar: true,
+    frame: false
   })
 
   //load the index.html from a url
@@ -74,3 +79,4 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
