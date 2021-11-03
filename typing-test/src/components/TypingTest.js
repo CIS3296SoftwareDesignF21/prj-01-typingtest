@@ -7,7 +7,7 @@ const TypingTest = (props) => {
                 <div className="test-text"> 
 					{props.words.split("").map(function(char, idx){
 						return (
-                            <span 
+                            <span key={idx} 
                                 className={(idx < props.index) ? 'right' : 'default'}
                             >
                                 {char}
