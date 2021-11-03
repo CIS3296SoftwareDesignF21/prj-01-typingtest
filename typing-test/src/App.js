@@ -3,6 +3,7 @@ import { words } from "./words.json";
 import TypingTest from './components/TypingTest';
 import SignInModal from './components/SignInModal';
 import TitleBar from './components/TitleBar';
+import TaskBar from './components/TaskBar';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
 
@@ -20,23 +21,23 @@ function App() {
     console.log(timerActive);
 
     switch (event.key) {
-			
+
       case "Enter":
-        if(!timerActive){
+        if (!timerActive) {
           setTimerActive(true);
         }
-				break;
+        break;
 
       case "Backspace":
         break;
 
-			default:
-        if(event.key === words[index] && timerActive){
+      default:
+        if (event.key === words[index] && timerActive) {
           setIndex((index) => index + 1);
         }
-				break;
-		}
-	};
+        break;
+    }
+  };
 
   const openSignIn = () => {
     setShowSignIn(prev => !prev);
@@ -52,20 +53,26 @@ function App() {
 
   return (
     <div className="App">
-      <TitleBar openSignIn={openSignIn} />
-      <header className="App-header">
-      </header>
+
       <div className="landing">
-        {/* <Timer /> */}
-        <TypingTest 
-          timerActive={timerActive} 
-          setTimerActive={setTimerActive} 
-          setIndex={setIndex}
-          childFunc={childFunc} 
-          words={words} 
-          index={index}
-          />
-        <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
+        <div className="task-bar">
+          <TaskBar />
+        </div>
+        <div>
+          <TitleBar openSignIn={openSignIn} />
+          <div className="main-window">
+            {/* <Timer /> */}
+            <TypingTest
+              timerActive={timerActive}
+              setTimerActive={setTimerActive}
+              setIndex={setIndex}
+              childFunc={childFunc}
+              words={words}
+              index={index}
+            />
+            <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
+          </div>
+        </div>
       </div>
     </div>
   );
