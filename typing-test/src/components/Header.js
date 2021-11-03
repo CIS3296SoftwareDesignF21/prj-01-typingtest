@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Header = () => {
+export default Header
+
+export const Header = () => {   //Header component will be finished soon
     return (
-        <div className="header">
-            <HButton iconProp=''/>       
-            <HButton iconProp=''/>  
-            <HButton iconProp=''/>   
+        <div>className
+            {/* <HButton iconProp = ''/>
+            <HButton iconProp = ''/>
+            <HButton iconProp = ''/> */}
         </div>
     )
 }
-
-export default Header
