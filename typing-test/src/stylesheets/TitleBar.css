@@ -1,5 +1,6 @@
 .titlebar {
   padding: 0px;
+  min-height: 5vh;
   background: linear-gradient(to left, #201D47, #18163d);
 }
 

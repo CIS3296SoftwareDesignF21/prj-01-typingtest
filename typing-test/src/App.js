@@ -10,20 +10,28 @@ function App() {
 
   const [index, setIndex] = useState(0);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [timerActive, setTimerActive] = useState(false);
+  // const [timerState, setTimerState] = useState(false);
+
+  const childFunc = React.useRef(null);
 
   const onKeyPress = (event) => {
     console.log("Current key: ", event.key);
+    console.log(timerActive);
 
     switch (event.key) {
 			
-      // case " ":
-			// 	break;
+      case "Enter":
+        if(!timerActive){
+          setTimerActive(true);
+        }
+				break;
 
       case "Backspace":
         break;
 
 			default:
-        if(event.key === words[index]){
+        if(event.key === words[index] && timerActive){
           setIndex((index) => index + 1);
         }
 				break;
@@ -40,7 +48,7 @@ function App() {
     return () => {
       document.removeEventListener('keydown', onKeyPress);
     };
-  }, [index])
+  }, [index, timerActive])
 
   return (
     <div className="App">
@@ -48,8 +56,15 @@ function App() {
       <header className="App-header">
       </header>
       <div className="landing">
-        <TypingTest words={words} index={index}/>
-        <button onClick = {() => setIndex(0)}>reset</button>
+        {/* <Timer /> */}
+        <TypingTest 
+          timerActive={timerActive} 
+          setTimerActive={setTimerActive} 
+          setIndex={setIndex}
+          childFunc={childFunc} 
+          words={words} 
+          index={index}
+          />
         <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
       </div>
     </div>
