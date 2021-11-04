@@ -38,7 +38,6 @@ function sqlBuilder(type, cols, values, table){
     }
     sqlStr += ');';
   } 
-  
   else if(type == 's'){
     sqlStr += 'SELECT '
     for(var i = 0; i < cols.length; i++){
@@ -54,6 +53,13 @@ function sqlBuilder(type, cols, values, table){
   return sqlStr;
 }
 
+function signUp(dispName, email, pw){
+  connection.query(sqlBuilder('i', ['display_name' , 'user_email' , 'password'], [dispName, email, pw], 'user_table'), function (error, results) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
+  });
+}
+
 initCon();
 
 connection.query(sqlBuilder('s', ['*'], [], 'user_table'), function (error, results) {
@@ -61,9 +67,6 @@ connection.query(sqlBuilder('s', ['*'], [], 'user_table'), function (error, resu
   console.log('The solution is: ', results);
 });
 
-connection.query(sqlBuilder('i', ['display_name' , 'user_email' , 'password'], ['aaa', 'test2', '5678'], 'user_table'), function (error, results) {
-  if (error) throw error;
-  console.log('The solution is: ', results);
-});
+//signUp('bbb','test3@website.com', '9012');
 
 endConn();
