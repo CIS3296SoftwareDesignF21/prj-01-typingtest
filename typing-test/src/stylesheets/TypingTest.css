@@ -24,6 +24,30 @@
     color:#201D47;
     animation: breathing 5s infinite forwards;
     font-weight: 750;
+    
+} 
+.word-base .wpm{
+    position: absolute;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 70px;
+    font-size: 12px;
+    background:#3C2F80;
+    color: #75749C;
+    border-radius: 15px;
+
+
+}
+.wpm{
+    position: relative;
+    padding: 15px;
+    font-size: 12px;
+    background:#3C2F80;
+    color: #75749C;
+    border-radius: 15px;
+    margin: 5px;
+
 }
 
 @keyframes breathing {
