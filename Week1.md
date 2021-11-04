@@ -1,20 +1,21 @@
 # Trello Contributions:
 	
-	-Jason Lamanna
-		- Created MySQL Database
-		- Created Mockups
-		- Created Week1.md
+## Jason Lamanna
+- Created MySQL Database
+- Created Mockups
+- Created Week1.md
 	
-	-Colin Harker
-		- Built Base Project Structure
-		- Deployable Executable
-		- Created Mockups
+## Colin Harker
+- Built Base Project Structure
+- Deployable Executable
+- Created Mockups
+- Worked on Release
 	
-	-Abdul Maaf
-		- Created and Wrote README.md
-		- Created Base Header Component
+## Abdul Maaf
+- Created and Wrote README.md
+- Created Base Header Component
 		
-	-Hunter Lautenbacher
-		- Automatetd Terminal Instructions
-		- Created Trello Board
-		
+## Hunter Lautenbacher
+- Automated Terminal Instructions
+- Created Trello Board
+- Worked on Release		

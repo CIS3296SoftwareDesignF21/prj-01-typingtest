@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, shell } = require('electron')
 const isDev = require("electron-is-dev");
+const path = require('path')
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension, REACT_DEVELOPER_TOOLS; // NEW!
@@ -15,18 +16,23 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 } // NEW!
 
-function createWindow () {
+function createWindow (width, height) {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width,
+    height,
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: false, // is default value after Electron v5
+      contextIsolation: true, // protect against prototype pollution
+      enableRemoteModule: false, // turn off remote
+      // preload: path.join(__dirname, 'preload.js'), 
+    },
+    autoHideMenuBar: true,
+    frame: false
   })
 
   //load the index.html from a url
-  win.loadURL('http://localhost:3000');
+  win.loadURL(isDev ? "http://localhost:3000" : `file://${__dirname}/../build/index.html`);
 
   // Open the DevTools.
   win.webContents.openDevTools()
@@ -36,7 +42,15 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow();
+
+  // We cannot require the screen module until the app is ready.
+  const { screen } = require('electron')
+
+  // Create a window that fills the screen's available work area.
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const { width, height } = primaryDisplay.workAreaSize
+
+  createWindow(width * .75, height * .75);
 
   if (isDev) {
     installExtension(REACT_DEVELOPER_TOOLS)
@@ -65,3 +79,4 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
