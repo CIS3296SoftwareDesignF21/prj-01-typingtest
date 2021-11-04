@@ -2,6 +2,8 @@
 
 var mysql = require('mysql');
 var connection;
+var loggedIn = false;
+var currAccId;
 
 function initCon(){
   connection = mysql.createConnection({
@@ -16,57 +18,31 @@ function endConn(){
   connection.end();
 }
 
-function sqlBuilder(type, cols, values, table){
-  var sqlStr = '';
-
-  if(type == 'i'){
-    sqlStr += 'INSERT INTO typeTestdb.' + table + ' (';
-    for(var j = 0; j < cols.length; j++){
-      if(j == cols.length-1){
-        sqlStr += cols[j];
-      }else{
-      sqlStr += cols[j] + ',';
-      }
-    }
-    sqlStr += ') VALUES (';
-    for(var i = 0; i < values.length; i++){
-      if(i == values.length-1){
-        sqlStr += '\'' + values[i] + '\'';
-      }else{
-      sqlStr += '\'' +values[i] + '\',';
-      }
-    }
-    sqlStr += ');';
-  } 
-  else if(type == 's'){
-    sqlStr += 'SELECT '
-    for(var i = 0; i < cols.length; i++){
-      if(i == cols.length-1){
-        sqlStr += cols[i];
-      }else{
-      sqlStr += cols[i] + ',';
-      }
-    }
-    sqlStr += ' FROM typeTestdb.' + table;
-  }
-
-  return sqlStr;
-}
-
-function signUp(dispName, email, pw){
-  connection.query(sqlBuilder('i', ['display_name' , 'user_email' , 'password'], [dispName, email, pw], 'user_table'), function (error, results) {
+function getInfoById(accId){
+  connection.query("SELECT * FROM typeTestdb.user_table WHERE account_id = ?", [accId], function (error, results) {
     if (error) throw error;
-    console.log('The solution is: ', results);
+    console.log('Account Info for Account #' + accId +": ", results);
   });
 }
 
+function signUp(dispName, email, pw){
+  connection.query("INSERT INTO typeTestdb.user_table (display_name,user_email,password) VALUES (?,?,?);",[dispName, email, pw], function (error, results) {
+    if (error) console.log("Email already registered! Try logging in!");
+    console.log('Account Created');
+  });
+}
+
+function logIn(email, pw){
+  connection.query("SELECT * FROM typeTestdb.user_table WHERE user_email = ? AND password = ?;", [email, pw], function (error, results) {
+    if (error) throw error;
+    console.log('Account #' + results[0].account_id + ' Logged In');
+    currAccId = results[0].account_id;
+    loggedIn = true;
+  });
+}
 initCon();
 
-connection.query(sqlBuilder('s', ['*'], [], 'user_table'), function (error, results) {
-  if (error) throw error;
-  console.log('The solution is: ', results);
-});
-
-//signUp('bbb','test3@website.com', '9012');
-
+//getInfoById('2');
+signUp('ccc','test4@website.com', '1111');
+logIn('test2', '5678');
 endConn();
