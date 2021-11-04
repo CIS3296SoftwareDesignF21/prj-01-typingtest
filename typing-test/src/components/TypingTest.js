@@ -41,13 +41,13 @@ const TypingTest = (props) => {
             props.setIndex(0);
             setTimer(staticCountdown);
             setCountdown(3);
-        } else if(props.inCountdown){
-            if(countdown === 1){
+        } else if (props.inCountdown) {
+            if (countdown === 1) {
                 props.setInCountdown(false);
-            }else{
+            } else {
                 setCountdown(countdown => countdown - 1)
             }
-        }else{
+        } else {
             setTimer(timer => timer - 1);
         }
     }, props.timerActive ? 1000 : null);
@@ -55,18 +55,39 @@ const TypingTest = (props) => {
     return (
         <div className="container">
             <div className="timer-wrapper">
-                <div style={props.timerActive && !props.inCountdown ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : {color: '#75749C'}} className="timer">
+                <div style={props.timerActive && !props.inCountdown ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : { color: '#75749C' }} className="timer">
                     {timer}s
                 </div>
-                <div className="timer-select">
-                    <div onClick={() => setCount(15)} style={staticCountdown === 15 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
-                        15
+                <div className="right-elements">
+                    <div className="cd-switch-wrapper">
+                        <div>
+                            Countdown
+                        </div>
+                        <div className="countdown-switch">
+                            <div className="text">
+                                Off
+                            </div>
+                            <div>
+                                <label class="switch">
+                                    <input type="checkbox" />
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div className="text">
+                                On
+                            </div>
+                        </div>
                     </div>
-                    <div onClick={() => setCount(30)} style={staticCountdown === 30 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
-                        30
-                    </div>
-                    <div onClick={() => setCount(45)} style={staticCountdown === 45 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
-                        45
+                    <div className="timer-select">
+                        <div onClick={() => setCount(15)} style={staticCountdown === 15 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
+                            15
+                        </div>
+                        <div onClick={() => setCount(30)} style={staticCountdown === 30 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
+                            30
+                        </div>
+                        <div onClick={() => setCount(45)} style={staticCountdown === 45 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
+                            45
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,11 +96,11 @@ const TypingTest = (props) => {
                 {props.timerActive ? null : <div className="start-signal">
                     Press Enter To Start
                 </div>}
-                {props.timerActive && props.inCountdown ? 
-                <div className="countdown">
-                    {countdown}
-                    </div> 
-                : null}
+                {props.timerActive && props.inCountdown ?
+                    <div className="countdown">
+                        {countdown}
+                    </div>
+                    : null}
                 <div className="test-text">
                     {props.words.split("").map(function (char, idx) {
                         return (
