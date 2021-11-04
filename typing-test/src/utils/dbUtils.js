@@ -27,8 +27,11 @@ function getInfoById(accId){
 
 function signUp(dispName, email, pw){
   connection.query("INSERT INTO typeTestdb.user_table (display_name,user_email,password) VALUES (?,?,?);",[dispName, email, pw], function (error, results) {
-    if (error) console.log("Email already registered! Try logging in!");
-    console.log('Account Created');
+    if (error) {
+      console.log("Email already registered! Try logging in!");
+    } else {
+      console.log('Account Created');
+    }
   });
 }
 
