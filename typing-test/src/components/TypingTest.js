@@ -8,6 +8,7 @@ const TypingTest = (props) => {
     const [timer, setTimer] = useState(15);
     const [countdown, setCountdown] = useState(3);
     const [numEntries, setNumEntries] = useState(0);
+    const [WPMTime, setWPMTime] = useState(0);
 
     function useInterval(callback, delay) {
         const savedCallback = useRef();
@@ -46,17 +47,19 @@ const TypingTest = (props) => {
             if(countdown === 1){
                 props.setInCountdown(false);
                 setNumEntries(0);
+                setWPMTime(staticCountdown);
             }else{
                 setCountdown(countdown => countdown - 1)
             }
         }else{
             setTimer(timer => timer - 1);
             setNumEntries(props.index);
+            
         }
     }, props.timerActive ? 1000 : null);
 
-    const grossWPM = (numWords, time)=> {
-        return ((numWords/5)/time)*60;
+    const grossWPM = ()=> {
+        return ((numEntries/5)/WPMTime)*60;
     };
 
     return (
@@ -90,7 +93,7 @@ const TypingTest = (props) => {
                 {props.timerActive ? null : <div className="start-signal-wrapper">
                 
                     Correct Entries: {numEntries} <br/>
-                    Your WPM: {grossWPM(numEntries, staticCountdown)} <br/> <br/>
+                    Your WPM: {grossWPM()} <br/> <br/>
                     <div className = "start-signal">
                         Press Enter To Start!
                     </div>
