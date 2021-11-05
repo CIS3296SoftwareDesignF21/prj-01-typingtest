@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { words } from "./words.json";
 import TypingTest from './components/TypingTest';
 import SignInModal from './components/SignInModal';
@@ -25,7 +25,8 @@ function App() {
         }
         break;
 
-      case "Backspace":
+      case "Escape":
+        console.log("correct");
         break;
 
       default:
@@ -50,7 +51,6 @@ function App() {
 
   return (
     <div className="App">
-
       <div className="landing">
         <div className="task-bar">
           <TaskBar />
@@ -58,7 +58,6 @@ function App() {
         <div>
           <TitleBar openSignIn={openSignIn} />
           <div className="main-window">
-            {/* <Timer /> */}
             <TypingTest
               timerActive={timerActive}
               setTimerActive={setTimerActive}

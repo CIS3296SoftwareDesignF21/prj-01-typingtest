@@ -5,7 +5,7 @@ var connection;
 var loggedIn = false;
 var currAccId;
 
-function initCon(){
+export function initCon(){
   connection = mysql.createConnection({
     host     : 'typetest-db.cba2qmzidbbp.us-east-1.rds.amazonaws.com',
     user     : 'admin',
@@ -14,18 +14,18 @@ function initCon(){
   connection.connect();
 }
 
-function endConn(){
+export function endConn(){
   connection.end();
 }
 
-function getInfoById(accId){
+export function getInfoById(accId){
   connection.query("SELECT * FROM typeTestdb.user_table WHERE account_id = ?", [accId], function (error, results) {
     if (error) throw error;
     console.log('Account Info for Account #' + accId +": ", results);
   });
 }
 
-function signUp(dispName, email, pw){
+export function signUp(dispName, email, pw){
   connection.query("INSERT INTO typeTestdb.user_table (display_name,user_email,password) VALUES (?,?,?);",[dispName, email, pw], function (error, results) {
     if (error) {
       console.log("Email already registered! Try logging in!");
@@ -35,7 +35,7 @@ function signUp(dispName, email, pw){
   });
 }
 
-function logIn(email, pw){
+export function logIn(email, pw){
   connection.query("SELECT * FROM typeTestdb.user_table WHERE user_email = ? AND password = ?;", [email, pw], function (error, results) {
     if (error) throw error;
     console.log('Account #' + results[0].account_id + ' Logged In');
@@ -43,9 +43,9 @@ function logIn(email, pw){
     loggedIn = true;
   });
 }
-initCon();
+// initCon();
 
-//getInfoById('2');
-signUp('ccc','test4@website.com', '1111');
-logIn('test2', '5678');
-endConn();
+// //getInfoById('2');
+// signUp('ccc','test4@website.com', '1111');
+// logIn('test2', '5678');
+// endConn();

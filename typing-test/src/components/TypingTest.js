@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import styled from "styled-components";
 import "../stylesheets/TypingTest.css"
 
@@ -7,6 +7,13 @@ const TypingTest = (props) => {
     const [staticCountdown, setStaticCountdown] = useState(15);
     const [timer, setTimer] = useState(15);
     const [countdown, setCountdown] = useState(3);
+
+    function reset(){
+        props.setTimerActive(false);
+            props.setIndex(0);
+            setTimer(staticCountdown);
+            setCountdown(3);
+    }
 
     function useInterval(callback, delay) {
         const savedCallback = useRef();
@@ -37,10 +44,7 @@ const TypingTest = (props) => {
 
     useInterval(() => {
         if (!props.inCountdown && timer === 0) {
-            props.setTimerActive(false);
-            props.setIndex(0);
-            setTimer(staticCountdown);
-            setCountdown(3);
+            reset();
         } else if (props.inCountdown) {
             if (countdown === 1) {
                 props.setInCountdown(false);
