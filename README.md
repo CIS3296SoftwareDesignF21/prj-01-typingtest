@@ -25,9 +25,11 @@ cd typing-test
 npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
 ```
 ## How to Install
--Download Zip File
-
+-Download Latest Release
+- [0.1.0](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing) 
+ 
 -Run typing-test.exe
+
 ## Vision Statement
 
 Our vision for this project is to achieve a feature-rich program with an elegant user interface. 
@@ -35,7 +37,11 @@ Because this project is a typing test, the team arranged what we thought were th
 By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
 To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
 
-## User Persona
+## User Personas
+
+![Learner](User_Persona-Learner.png)
+![Upgrader](User_Persona-Upgrader.png)
+![Play Tester](User_Persona-Playtester.png)
 
 Hugh, Age 21:
 He is a college student who would like to improve his typng skills. He has been having  a nuber of papers due and consistanly has to re edit due to spelling errors. By using this application he hopes to speed up his typing to gain more time for things he enjoys.
@@ -43,11 +49,9 @@ He is a college student who would like to improve his typng skills. He has been 
 Francis, age 26:
 He enjoys typing and is competitive when it comes to calculating his Words per Minute. He currently uses pre existing typing trainers but is eager to look for something new as he dislikes the format of the orgional.
 
-Serina, age 12:
-She just got her first computer and is first learning how to type. They would like to use supplementrary material to better learn their keyboard.
 
 
 
-## Download
+## Releases
 [0.1.0](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing)
 
