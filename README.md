@@ -39,6 +39,10 @@ npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.
 
 For any user who would like to improve their typing skills. (Typing Test) is a typing simulator that allows users to learn pratical typing skills, improve their words per minute, and gain good typing habits, all while having fun. Unlike TypeRacer, our product achieves a feature-rich program with an elegant user interface that is utilized as an executable desktop application. 
 
+## UML
+There is an Index that will have single page application using the React and Electron frameworks. There will be stylesheets to provide visual elements. The app will be the main page where the typing will be displayed. There will be multiple components within the creation of the app. Each have specifiic functionality. Title bar for navigation. Accounts for login and register, with designated attributes. Statistcs, displays users data, Scoreboard, displays global data. Use of AWS and mySQL for Database storage.
+![UML Diagram](TypingTest_UML.png)
+
 ## User Personas
 
 ![Learner](User_Persona-Learner.png)
