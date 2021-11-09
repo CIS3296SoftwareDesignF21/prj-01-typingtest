@@ -51,5 +51,6 @@ There is an Index that will have single page application using the React and Ele
 
 
 ## Releases
-[0.1.0](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing)
+[0.1.0-pre-release](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing)
+[0.2.0-pre-release](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing)
 
