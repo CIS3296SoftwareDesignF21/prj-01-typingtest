@@ -9,14 +9,14 @@ All notable changes to this project will be documented in this file.
 - sign in front end
 - wpm calculation
 ### Added
--Added Download by @Maafia 
--Add User Persona PNG by @HunterLaut 
--Added Sign in and title bar components by @ColinHarker
--User persona/read me by @HunterLaut 
--Update ReadME by @HunterLaut
--updating by @jclamanna 
--updating readme by @jclamanna 
--Made Calculate gross WPM by @HunterLaut 
+- Added Download by @Maafia 
+- Add User Persona PNG by @HunterLaut 
+- Added Sign in and title bar components by @ColinHarker
+- User persona/read me by @HunterLaut 
+- Update ReadME by @HunterLaut
+- Updating by @jclamanna 
+- Updating readme by @jclamanna 
+- Made Calculate gross WPM by @HunterLaut 
 
 ## [0.1.0] - 2021-11-01
 ### Features
