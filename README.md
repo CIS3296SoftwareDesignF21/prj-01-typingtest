@@ -17,6 +17,11 @@ At the end of the speed mode, the program will present stats on the users WPM(Wo
 If we get far enough, we are hoping to display stats and records accross other players as well,
 potentially having users enter their initials to display in a leaderboard.
 
+Our vision for this project is to achieve a feature-rich program with an elegant user interface. 
+Because this project is a typing test, the team arranged what we thought were the best aspects from other online typing tests into the ultimate typing test program.
+By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
+To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
+
 
 ## How to Run
 ```
@@ -32,10 +37,7 @@ npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.
 
 ## Vision Statement
 
-Our vision for this project is to achieve a feature-rich program with an elegant user interface. 
-Because this project is a typing test, the team arranged what we thought were the best aspects from other online typing tests into the ultimate typing test program.
-By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
-To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
+For any user who would like to improve their typing skills. (Typing Test) is a typing simulator that allows users to learn pratical typing skills, improve their words per minute, and gain good typing habits, all while having fun. Unlike TypeRacer, our product achieves a feature-rich program with an elegant user interface that is utilized as an executable desktop application. 
 
 ## User Personas
 
