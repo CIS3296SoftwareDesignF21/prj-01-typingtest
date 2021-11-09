@@ -2,6 +2,7 @@
 ### [Project Proposal](https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14)
 ### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
 ### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week1.md)
+### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week2.md)
 
 
 ## Project Description
@@ -30,8 +31,7 @@ cd typing-test
 npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
 ```
 ## How to Install
--Download Latest Release
-- [0.1.0](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing) 
+-[Download Latest Release](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing)
  
 -Run typing-test.exe
 
@@ -48,14 +48,6 @@ There is an Index that will have single page application using the React and Ele
 ![Learner](User_Persona-Learner.png)
 ![Upgrader](User_Persona-Upgrader.png)
 ![Play Tester](User_Persona-Playtester.png)
-
-Hugh, Age 21:
-He is a college student who would like to improve his typng skills. He has been having  a nuber of papers due and consistanly has to re edit due to spelling errors. By using this application he hopes to speed up his typing to gain more time for things he enjoys.
-
-Francis, age 26:
-He enjoys typing and is competitive when it comes to calculating his Words per Minute. He currently uses pre existing typing trainers but is eager to look for something new as he dislikes the format of the orgional.
-
-
 
 
 ## Releases
