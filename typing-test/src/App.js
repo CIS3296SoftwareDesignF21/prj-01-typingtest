@@ -6,22 +6,30 @@ import TitleBar from './components/TitleBar';
 import TaskBar from './components/TaskBar';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
+import Statistics from './components/Statistics';
 
 function App() {
 
   const [index, setIndex] = useState(0);
+  const [page, setPage] = useState(0);
+
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
+  const [countdownToggleChecked, setCountdownToggleChecked] = useState(false);
 
   const onKeyPress = (event) => {
 
     switch (event.key) {
 
       case "Enter":
+        console.log(countdownToggleChecked)
         if (!timerActive) {
           setTimerActive(true);
-          setInCountdown(true);
+          if (countdownToggleChecked)
+            setInCountdown(true);
+          else
+            setInCountdown(false);
         }
         break;
 
@@ -37,6 +45,31 @@ function App() {
     }
   };
 
+  const pageSwitch = (param) => {
+    console.log(param)
+    switch (param) {
+      case 0:
+        return <TypingTest
+          timerActive={timerActive}
+          setTimerActive={setTimerActive}
+          inCountdown={inCountdown}
+          setInCountdown={setInCountdown}
+          setIndex={setIndex}
+          words={words}
+          index={index}
+          countdownToggleChecked={countdownToggleChecked}
+          setCountdownToggleChecked={setCountdownToggleChecked}
+        />
+        break;
+      case 1:
+        return <Statistics />
+        break;
+      default:
+        return 'poop'
+        break;
+    }
+  }
+
   const openSignIn = () => {
     setShowSignIn(prev => !prev);
   };
@@ -47,26 +80,18 @@ function App() {
     return () => {
       document.removeEventListener('keydown', onKeyPress);
     };
-  }, [index, timerActive, inCountdown])
+  }, [index, timerActive, inCountdown, page])
 
   return (
     <div className="App">
       <div className="landing">
         <div className="task-bar">
-          <TaskBar />
+          <TaskBar page={page} setPage={setPage} />
         </div>
         <div>
           <TitleBar openSignIn={openSignIn} />
           <div className="main-window">
-            <TypingTest
-              timerActive={timerActive}
-              setTimerActive={setTimerActive}
-              inCountdown={inCountdown}
-              setInCountdown={setInCountdown}
-              setIndex={setIndex}
-              words={words}
-              index={index}
-            />
+            {pageSwitch(page)}
             <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
         </div>
