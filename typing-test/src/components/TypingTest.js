@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import styled from "styled-components";
 import "../stylesheets/TypingTest.css"
+import ToggleSwitch from "./ToggleSwitch";
 
 const TypingTest = (props) => {
 
@@ -63,25 +64,10 @@ const TypingTest = (props) => {
                     {timer}s
                 </div>
                 <div className="right-elements">
-                    <div className="cd-switch-wrapper">
-                        <div>
-                            Countdown
-                        </div>
-                        <div className="countdown-switch">
-                            <div className="text">
-                                Off
-                            </div>
-                            <div>
-                                <label class="switch">
-                                    <input type="checkbox" />
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                            <div className="text">
-                                On
-                            </div>
-                        </div>
-                    </div>
+                    <ToggleSwitch 
+                        countdownToggleChecked={props.countdownToggleChecked}
+                        onToggle={props.setCountdownToggleChecked}
+                    />
                     <div className="timer-select">
                         <div onClick={() => setCount(15)} style={staticCountdown === 15 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
                             15
@@ -100,7 +86,7 @@ const TypingTest = (props) => {
                 {props.timerActive ? null : <div className="start-signal">
                     Press Enter To Start
                 </div>}
-                {props.timerActive && props.inCountdown ?
+                {props.timerActive && props.inCountdown && props.countdownToggleChecked ?
                     <div className="countdown">
                         {countdown}
                     </div>
