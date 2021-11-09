@@ -3,7 +3,7 @@
 ## Jason Lamanna
 - Connected database through Node JS 
 - Worked on WebAPI
-- 
+- Researched using AWS Lambda in Combination with AWS API-Gateway so I can work on a Rest API
 	
 ## Colin Harker
 - Created timer
