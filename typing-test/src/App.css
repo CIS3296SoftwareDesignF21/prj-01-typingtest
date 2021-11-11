@@ -6,9 +6,13 @@
 
 }
 
-.landing{
+.window{
   display: flex;
   flex-direction: row;
+}
+
+.landing{
+  width: 100%;
 }
 
 .task-bar{

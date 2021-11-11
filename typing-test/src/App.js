@@ -6,7 +6,9 @@ import TitleBar from './components/TitleBar';
 import TaskBar from './components/TaskBar';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
-import Statistics from './components/Statistics';
+import Account from './components/Account.js';
+import OfflineAccount from './components/OfflineAccount';
+import Settings from './components/Settings';
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const onKeyPress = (event) => {
 
@@ -62,8 +65,11 @@ function App() {
         />
         break;
       case 1:
-        return <Statistics />
+        return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
+        case 4:
+          return <Settings />
+          break;
       default:
         return 'poop'
         break;
@@ -84,11 +90,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="landing">
+      <div className="window">
         <div className="task-bar">
           <TaskBar page={page} setPage={setPage} />
         </div>
-        <div>
+        <div className="landing">
           <TitleBar openSignIn={openSignIn} />
           <div className="main-window">
             {pageSwitch(page)}
