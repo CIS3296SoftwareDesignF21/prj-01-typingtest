@@ -78,6 +78,9 @@ const TypingTest = (props) => {
                         <div onClick={() => setCount(45)} style={staticCountdown === 45 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
                             45
                         </div>
+                        <div onClick={() => setCount(60)} style={staticCountdown === 60 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
+                            60
+                        </div>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ const SettingsLoginTile = () => {
         <div className="slt-wrapper">
             <MdLock style={{color: '50E3C2', padding: '1em'}}/>
             <div className="slt-text">
-            Login to view account settings
+                Login to view account settings
             </div>
         </div>
     )

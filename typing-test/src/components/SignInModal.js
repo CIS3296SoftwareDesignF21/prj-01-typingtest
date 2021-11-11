@@ -4,8 +4,7 @@ import validate from './validateInfo'
 import "../stylesheets/SignInModal.css"
 import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
-import * as db from '../utils/dbUtils.js';
-
+// import * as db from '../utils/dbUtils.js';
 
 const SignInModal = ({ showSignIn, setShowSignIn }) => {
 
@@ -13,16 +12,7 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
 
     const [showSignUp, setShowSignUp] = useState(false);
 
-    if(showSignIn){
-        db.initCon();
-    }
-
     function submitForm() {
-
-        if(showSignUp)
-        {
-            db.signUp();
-        }
 
         setShowSignIn(false);
         values.email = '';
@@ -67,6 +57,8 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
     useEffect(
         () => {
             document.addEventListener('keydown', keyPress);
+            // db.initCon();
+
             return () => document.removeEventListener('keydown', keyPress);
         },
         [keyPress]
