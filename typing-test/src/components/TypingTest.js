@@ -8,6 +8,8 @@ const TypingTest = (props) => {
     const [staticCountdown, setStaticCountdown] = useState(15);
     const [timer, setTimer] = useState(15);
     const [countdown, setCountdown] = useState(3);
+    const [numEntries, setNumEntries] = useState(0);
+    const [WPMTime, setWPMTime] = useState(0);
 
     function reset(){
         props.setTimerActive(false);
@@ -49,13 +51,21 @@ const TypingTest = (props) => {
         } else if (props.inCountdown) {
             if (countdown === 1) {
                 props.setInCountdown(false);
-            } else {
+                setNumEntries(0);
+                setWPMTime(staticCountdown);
+            }else{
                 setCountdown(countdown => countdown - 1)
             }
         } else {
             setTimer(timer => timer - 1);
+            setNumEntries(props.index);
+            
         }
     }, props.timerActive ? 1000 : null);
+
+    const grossWPM = ()=> {
+        return ((numEntries/5)/WPMTime)*60;
+    };
 
     return (
         <div className="container">
@@ -63,6 +73,13 @@ const TypingTest = (props) => {
                 <div style={props.timerActive && !props.inCountdown ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : { color: '#75749C' }} className="timer">
                     {timer}s
                 </div>
+
+                 {props.timerActive ? <div className = "wpm">
+                
+                    Correct Entries: {props.index} <br/>
+                    Your WPM: {grossWPM(props.index, staticCountdown-countdown)}
+                </div> : null }
+                
                 <div className="right-elements">
                     <ToggleSwitch 
                         countdownToggleChecked={props.countdownToggleChecked}
@@ -86,14 +103,20 @@ const TypingTest = (props) => {
             </div>
 
             <div className="word-base">
-                {props.timerActive ? null : <div className="start-signal">
-                    Press Enter To Start
-                </div>}
-                {props.timerActive && props.inCountdown && props.countdownToggleChecked ?
-                    <div className="countdown">
-                        {countdown}
+                
+                {props.timerActive ? null : <div className="start-signal-wrapper">
+                
+                    Correct Entries: {numEntries} <br/>
+                    Your WPM: {grossWPM()} <br/> <br/>
+                    <div className = "start-signal">
+                        Press Enter To Start!
                     </div>
-                    : null}
+                    </div>}
+                {props.timerActive && props.inCountdown ? 
+                <div className="countdown">
+                    {countdown}
+                    </div> 
+                : null}
                 <div className="test-text">
                     {props.words.split("").map(function (char, idx) {
                         return (
