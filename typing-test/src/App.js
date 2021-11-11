@@ -68,7 +68,7 @@ function App() {
         return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
         case 4:
-          return <Settings />
+          return <Settings loggedIn={loggedIn}/>
           break;
       default:
         return 'poop'
