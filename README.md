@@ -2,6 +2,7 @@
 ### [Project Proposal](https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14)
 ### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
 ### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week1.md)
+### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week2.md)
 
 
 ## Project Description
@@ -17,6 +18,11 @@ At the end of the speed mode, the program will present stats on the users WPM(Wo
 If we get far enough, we are hoping to display stats and records accross other players as well,
 potentially having users enter their initials to display in a leaderboard.
 
+Our vision for this project is to achieve a feature-rich program with an elegant user interface. 
+Because this project is a typing test, the team arranged what we thought were the best aspects from other online typing tests into the ultimate typing test program.
+By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
+To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
+
 
 ## How to Run
 ```
@@ -25,29 +31,27 @@ cd typing-test
 npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
 ```
 ## How to Install
--Download Zip File
+- [Download Latest Release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.2.0-pre-release/typing-test-win32-x64.zip)
+ 
+- Run typing-test.exe
 
--Run typing-test.exe
 ## Vision Statement
 
-Our vision for this project is to achieve a feature-rich program with an elegant user interface. 
-Because this project is a typing test, the team arranged what we thought were the best aspects from other online typing tests into the ultimate typing test program.
-By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
-To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
+For any user who would like to improve their typing skills. (Typing Test) is a typing simulator that allows users to learn pratical typing skills, improve their words per minute, and gain good typing habits, all while having fun. Unlike TypeRacer, our product achieves a feature-rich program with an elegant user interface that is utilized as an executable desktop application. 
 
-## User Persona
+## UML
+There is an Index that will have single page application using the React and Electron frameworks. There will be stylesheets to provide visual elements. The app will be the main page where the typing will be displayed. There will be multiple components within the creation of the app. Each have specifiic functionality. Title bar for navigation. Accounts for login and register, with designated attributes. Statistcs, displays users data, Scoreboard, displays global data. Use of AWS and mySQL for Database storage.
+![UML Diagram](TypingTest_UML.png)
 
-Hugh, Age 21:
-He is a college student who would like to improve his typng skills. He has been having  a nuber of papers due and consistanly has to re edit due to spelling errors. By using this application he hopes to speed up his typing to gain more time for things he enjoys.
+## User Personas
 
-Francis, age 26:
-He enjoys typing and is competitive when it comes to calculating his Words per Minute. He currently uses pre existing typing trainers but is eager to look for something new as he dislikes the format of the orgional.
-
-Serina, age 12:
-She just got her first computer and is first learning how to type. They would like to use supplementrary material to better learn their keyboard.
+![Learner](User_Persona-Learner.png)
+![Upgrader](User_Persona-Upgrader.png)
+![Play Tester](User_Persona-Playtester.png)
 
 
+## Releases
+- [0.1.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.1.0/typing-test-win32-x64.rar)
 
-## Download
-[0.1.0](https://drive.google.com/file/d/10X-jYlGQ8W5sylnR8B7VQGQGpXT_LxrZ/view?usp=sharing)
+- [0.2.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.2.0-pre-release/typing-test-win32-x64.zip)
 
