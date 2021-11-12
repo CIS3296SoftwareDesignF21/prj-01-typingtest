@@ -134,3 +134,10 @@
     padding: 6px;
 	border-radius: 3px;
 }
+
+.form-inputs .errors{
+  font-size: smaller !important;
+  padding-left: 2em;
+  text-align: left;
+  color: #f00e0e;
+}
