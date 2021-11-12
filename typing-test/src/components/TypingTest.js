@@ -112,7 +112,7 @@ const TypingTest = (props) => {
                         Press Enter To Start!
                     </div>
                     </div>}
-                {props.timerActive && props.inCountdown ? 
+                {props.timerActive && props.inCountdown && props.countdownToggleChecked ? 
                 <div className="countdown">
                     {countdown}
                     </div> 

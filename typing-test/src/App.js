@@ -18,7 +18,7 @@ function App() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
-  const [countdownToggleChecked, setCountdownToggleChecked] = useState(false);
+  const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
   const onKeyPress = (event) => {
