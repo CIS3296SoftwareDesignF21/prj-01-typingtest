@@ -21,8 +21,6 @@ function App() {
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const request = require('postman-request');
-
   const onKeyPress = (event) => {
 
     switch (event.key) {
@@ -78,12 +76,25 @@ function App() {
     }
   }
 
+  const request = require('postman-request');
+
+  const options = {
+    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=1',
+    headers: {
+      'User-Agent': 'postman-request'
+    }
+  };
+
+  function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      const info = JSON.parse(body);
+      console.log(info.stargazers_count + " Stars");
+      console.log(info.forks_count + " Forks");
+    }
+  }
+
   const test = () => {
-    request('https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=1', function (error, response, body) {
-      console.log('error:', error); // Print the error if one occurred
-      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-      console.log('body:', body); // Print the HTML for the Google homepage.
-    });
+    request(options, callback);
   }
 
   const openSignIn = () => {
