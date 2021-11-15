@@ -1,16 +1,30 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import useForm from './useForm';
+import validate from './validateInfo'
 import "../stylesheets/SignInModal.css"
 import { useSpring, animated } from 'react-spring';
-//npm install react-spring
 import { MdClose } from 'react-icons/md';
-// npm install material-design-icons
-// npm install react-icons
+// import * as db from '../utils/dbUtils.js';
 
 const SignInModal = ({ showSignIn, setShowSignIn }) => {
 
     const modalRef = useRef();
 
     const [showSignUp, setShowSignUp] = useState(false);
+
+    function submitForm() {
+
+        setShowSignIn(false);
+        values.email = '';
+        values.username = '';
+        values.password = '';
+        values.password2 = '';
+    }
+
+    const { handleChange, handleSubmit, values, errors } = useForm(
+        submitForm,
+        validate
+    );
 
     const animation = useSpring({
         config: {
@@ -43,6 +57,8 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
     useEffect(
         () => {
             document.addEventListener('keydown', keyPress);
+            // db.initCon();
+
             return () => document.removeEventListener('keydown', keyPress);
         },
         [keyPress]
@@ -52,50 +68,73 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
             {showSignIn ? (
                 <div className='Background' onClick={closeModal} ref={modalRef}>
                     <animated.div >
-                        <div className='ModalWrapper' showSignIn={showSignIn}>
-                            <MdClose
-                                aria-label='Close modal'
-                                className='close-modal'
-                                onClick={() => setShowSignIn(prev => !prev)}
-                            />
-                            <div className='ModalContent'>
-                                {showSignUp ? <h1>Sign Up</h1> : <h1>Login</h1>}
-                                
-                                {showSignUp ? <div className='form-inputs'>
-                                    <input
-                                        className='form-input'
-                                        type='text'
-                                        name='Email'
-                                        placeholder='Email'
-                                    />
-                                </div>
-                                : null}
-                                <div className='form-inputs'>
-                                    <input
-                                        className='form-input'
-                                        type='text'
-                                        name='username'
-                                        placeholder='Username'
-                                    />
-                                </div>
-                                <div className='form-inputs'>
-                                    <input
-                                        className='form-input'
-                                        type='text'
-                                        name='username'
-                                        placeholder='Password'
-                                    />
-                                </div>
-                                <div className='sign-in-options'>
-                                    <div className='account-links'>
-                                        {showSignUp ? null : <div className='individual'>Forgot password?</div>}
-                                        <div onClick={openSignUp} className='individual'>{showSignUp ? 'Already have account? Login' : 'Register account'}</div>
-                                    </div>
-                                </div>
-                                <button type="button" className="sign-in-button">{showSignUp ? 'Sign up' : 'Login'}</button>
-                            </div>
+                        <form onSubmit={handleSubmit} noValidate>
+                            <div className='ModalWrapper' showSignIn={showSignIn}>
+                                <MdClose
+                                    aria-label='Close modal'
+                                    className='close-modal'
+                                    onClick={() => setShowSignIn(prev => !prev)}
+                                />
+                                <div className='ModalContent'>
+                                    {showSignUp ? <h1>Sign Up</h1> : <h1>Login</h1>}
 
-                        </div>
+                                    {showSignUp ? <div className='form-inputs'>
+                                        <input
+                                            className='form-input'
+                                            type='email'
+                                            name='email'
+                                            placeholder='Email'
+                                            value={values.email}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.email && <p className="errors">{errors.email}</p>}
+                                    </div>
+                                        : null}
+                                    <div className='form-inputs'>
+                                        <input
+                                            className='form-input'
+                                            type='text'
+                                            name='username'
+                                            placeholder='Username'
+                                            value={values.username}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.username && <p className="errors">{errors.username}</p>}
+                                    </div>
+                                    <div className='form-inputs'>
+                                        <input
+                                            className='form-input'
+                                            type='password'
+                                            name='password'
+                                            placeholder='Password'
+                                            value={values.password}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.password && <p className="errors">{errors.password}</p>}
+                                    </div>
+                                    {showSignUp ? <div className='form-inputs'>
+                                        <input
+                                            className='form-input'
+                                            type='password'
+                                            name='password2'
+                                            placeholder='Confirm Password'
+                                            value={values.password2}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.password2 && <p className="errors">{errors.password2}</p>}
+                                    </div>
+                                        : null}
+                                    <div className='sign-in-options'>
+                                        <div className='account-links'>
+                                            {showSignUp ? null : <div className='individual'>Forgot password?</div>}
+                                            <div onClick={openSignUp} className='individual'>{showSignUp ? 'Already have account? Login' : 'Register account'}</div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" className="sign-in-button">{showSignUp ? 'Sign up' : 'Login'}</button>
+                                </div>
+
+                            </div>
+                        </form>
                     </animated.div>
                 </div>
             ) : null}

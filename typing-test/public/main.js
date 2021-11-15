@@ -25,7 +25,8 @@ function createWindow (width, height) {
       nodeIntegration: false, // is default value after Electron v5
       contextIsolation: true, // protect against prototype pollution
       enableRemoteModule: false, // turn off remote
-      // preload: path.join(__dirname, 'preload.js'), 
+      // preload: path.join(__dirname, 'preload.js'),
+      devTools: false 
     },
     autoHideMenuBar: true,
     frame: false
