@@ -21,6 +21,8 @@ function App() {
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const request = require('postman-request');
+
   const onKeyPress = (event) => {
 
     switch (event.key) {
@@ -67,13 +69,21 @@ function App() {
       case 1:
         return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
-        case 4:
-          return <Settings loggedIn={loggedIn}/>
-          break;
+      case 4:
+        return <Settings loggedIn={loggedIn} />
+        break;
       default:
         return 'poop'
         break;
     }
+  }
+
+  const test = () => {
+    request('https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=1', function (error, response, body) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+      console.log('body:', body); // Print the HTML for the Google homepage.
+    });
   }
 
   const openSignIn = () => {
@@ -97,6 +107,7 @@ function App() {
         <div className="landing">
           <TitleBar openSignIn={openSignIn} />
           <div className="main-window">
+            <button onClick={test} />
             {pageSwitch(page)}
             <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
