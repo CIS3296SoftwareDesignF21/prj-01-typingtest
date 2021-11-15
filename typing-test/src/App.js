@@ -20,6 +20,7 @@ function App() {
   const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [testing, setTest] = useState("");
 
   const onKeyPress = (event) => {
 
@@ -80,16 +81,13 @@ function App() {
 
   const options = {
     url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=1',
-    headers: {
-      'User-Agent': 'postman-request'
-    }
   };
 
   function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
+      setTest(body);
       const info = JSON.parse(body);
-      console.log(info.stargazers_count + " Stars");
-      console.log(info.forks_count + " Forks");
+      console.log(info);
     }
   }
 
@@ -119,6 +117,7 @@ function App() {
           <TitleBar openSignIn={openSignIn} />
           <div className="main-window">
             <button onClick={test} />
+            {testing}
             {pageSwitch(page)}
             <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
