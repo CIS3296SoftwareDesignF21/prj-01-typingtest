@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
 import Settings from './components/Settings';
+import { colors } from '@react-spring/shared';
 
 function App() {
 
@@ -18,8 +19,9 @@ function App() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
-  const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
+  const [countdownToggleChecked, setCountdownToggleChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [testing, setTest] = useState("");
 
   const onKeyPress = (event) => {
 
@@ -48,6 +50,7 @@ function App() {
     }
   };
 
+
   const pageSwitch = (param) => {
     console.log(param)
     switch (param) {
@@ -67,13 +70,37 @@ function App() {
       case 1:
         return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
-        case 4:
-          return <Settings loggedIn={loggedIn}/>
-          break;
+      case 4:
+        return <Settings loggedIn={loggedIn} />
+        break;
       default:
-        return 'poop'
+
+        return (<div>
+          <button onClick={test} />
+          <div style={{ color: "white" }} >
+            {testing}
+          </div>
+        </div>)
         break;
     }
+  }
+
+  const request = require('postman-request');
+
+  const options = {
+    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=1',
+  };
+
+  function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      setTest(body);
+      const info = JSON.parse(body);
+      console.log(info);
+    }
+  }
+
+  const test = () => {
+    request(options, callback);
   }
 
   const openSignIn = () => {

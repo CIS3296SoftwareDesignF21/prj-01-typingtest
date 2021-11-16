@@ -1,6 +1,6 @@
 {
   "name": "typing-test",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "main": "public/main.js",
   "homepage": "./",
@@ -14,6 +14,7 @@
     "material-design": "0.0.1",
     "material-design-icons": "^3.0.1",
     "mysql": "^2.18.1",
+    "postman-request": "^2.88.1-postman.30",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",

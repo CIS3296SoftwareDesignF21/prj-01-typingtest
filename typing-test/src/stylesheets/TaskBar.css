@@ -13,6 +13,8 @@
 }
 
 .bottom-group{
+    display: flex;
+    flex-direction: column;
 }
 
 .tb-button{
