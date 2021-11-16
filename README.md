@@ -25,7 +25,14 @@ By using React, we will make use of modern web UX design principles and deploy i
 To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
 
 
-## How to Run
+## Develpoer Install
+
+[Install Node JS 16.13.0 LTS](https://nodejs.org/en/)(External Site)
+clone Repo
+Download Dependencies(Dependency link in github)
+```
+./Dependent.bat
+```
 ```
 cd typing-test
 ./Open.bat
