@@ -81,10 +81,6 @@ const TypingTest = (props) => {
                 </div> : null}
 
                 <div className="right-elements">
-                    <ToggleSwitch
-                        countdownToggleChecked={props.countdownToggleChecked}
-                        onToggle={props.setCountdownToggleChecked}
-                    />
                     <div className="timer-select">
                         <div onClick={() => setCount(15)} style={staticCountdown === 15 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
                             15
