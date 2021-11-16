@@ -32,7 +32,7 @@ cd typing-test
 npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
 ```
 ## How to Install
-- [Download Latest Release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.2.0-pre-release/typing-test-win32-x64.zip)
+- [Download Latest Release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip)
  
 - Run typing-test.exe
 
@@ -59,4 +59,6 @@ The user will create an account, there will be a login/register page that will b
 - [0.1.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.1.0/typing-test-win32-x64.rar)
 
 - [0.2.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.2.0-pre-release/typing-test-win32-x64.zip)
+
+- [0.3.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip)
 
