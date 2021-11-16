@@ -21,6 +21,10 @@ function App() {
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const[randomWords, setRandomWords] = useState("");    //setting its use state
+  var randWordsFunc = require('random-words');          //Must require random-words
+
+
   const onKeyPress = (event) => {
 
     switch (event.key) {
@@ -58,7 +62,7 @@ function App() {
           inCountdown={inCountdown}
           setInCountdown={setInCountdown}
           setIndex={setIndex}
-          words={words}
+          words={randomWords}             //Instead of using words, we are trying to use random words.
           index={index}
           countdownToggleChecked={countdownToggleChecked}
           setCountdownToggleChecked={setCountdownToggleChecked}
@@ -79,6 +83,13 @@ function App() {
   const openSignIn = () => {
     setShowSignIn(prev => !prev);
   };
+
+  useEffect(() => {   //using another useEffect so random words does not refresh everytime.
+
+    setRandomWords(randWordsFunc({exactly:25, join:' '}));  //Setting how many words right for the test right here.
+
+  }, [])
+
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
