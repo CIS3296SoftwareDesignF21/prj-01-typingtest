@@ -3,6 +3,7 @@
 ### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
 ### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week1.md)
 ### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week2.md)
+### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week3.md)
 
 
 ## Project Description
@@ -42,6 +43,8 @@ For any user who would like to improve their typing skills. (Typing Test) is a t
 ## UML
 There is an Index that will have single page application using the React and Electron frameworks. There will be stylesheets to provide visual elements. The app will be the main page where the typing will be displayed. There will be multiple components within the creation of the app. Each have specifiic functionality. Title bar for navigation. Accounts for login and register, with designated attributes. Statistcs, displays users data, Scoreboard, displays global data. Use of AWS and mySQL for Database storage.
 ![UML Diagram](TypingTest_UML.png)
+![UML Diagram](UML_Sequence_1-Game.png)
+![UML Diagram](UML_Sequence_2-Account.png)
 
 ## User Personas
 
