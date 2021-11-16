@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
 import Settings from './components/Settings';
+import { colors } from '@react-spring/shared';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
-  const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
+  const [countdownToggleChecked, setCountdownToggleChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [testing, setTest] = useState("");
 
@@ -49,6 +50,7 @@ function App() {
     }
   };
 
+
   const pageSwitch = (param) => {
     console.log(param)
     switch (param) {
@@ -72,7 +74,13 @@ function App() {
         return <Settings loggedIn={loggedIn} />
         break;
       default:
-        return 'poop'
+
+        return (<div>
+          <button onClick={test} />
+          <div style={{ color: "white" }} >
+            {testing}
+          </div>
+        </div>)
         break;
     }
   }
@@ -116,8 +124,6 @@ function App() {
         <div className="landing">
           <TitleBar openSignIn={openSignIn} />
           <div className="main-window">
-            <button onClick={test} />
-            {testing}
             {pageSwitch(page)}
             <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
