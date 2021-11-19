@@ -1,9 +1,10 @@
 import React from 'react'
 
-const AccountTile = () => {
+const AccountTile = ({logout}) => {
     return (
         <div>
             AccountTile
+            <button onClick={logout}>logout</button>
         </div>
     )
 }

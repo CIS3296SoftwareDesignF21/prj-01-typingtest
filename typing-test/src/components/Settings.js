@@ -4,7 +4,7 @@ import ColoredLine from './ColoredLine'
 import AccountTile from './AccountTile'
 import SettingsLoginTile from './SettingsLoginTile'
 
-const Settings = ({ loggedIn }) => {
+const Settings = ({ logout, loggedIn }) => {
     return (
         <div className="s-wrapper">
 
@@ -14,7 +14,7 @@ const Settings = ({ loggedIn }) => {
             <div className="s-line-spacing">
                 <ColoredLine color="#5B5A99" />
             </div>
-            {loggedIn ? <AccountTile /> : <SettingsLoginTile />}
+            {loggedIn ? <AccountTile logout={logout} /> : <SettingsLoginTile />}
             <div className="s-line-spacing">
                 <ColoredLine color="#5B5A99" />
             </div>
