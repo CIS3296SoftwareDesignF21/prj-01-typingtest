@@ -19,7 +19,7 @@ function App() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
-  const [countdownToggleChecked, setCountdownToggleChecked] = useState(false);
+  const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
   const [testing, setTest] = useState("");
 
@@ -125,10 +125,11 @@ function App() {
           <TitleBar openSignIn={openSignIn} />
           <div className="main-window">
             {pageSwitch(page)}
-            <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
         </div>
+        <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
       </div>
+      
     </div>
   );
 }
