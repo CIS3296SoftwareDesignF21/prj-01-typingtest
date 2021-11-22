@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
 import Settings from './components/Settings';
+import { colors } from '@react-spring/shared';
 
 function App() {
 
@@ -19,8 +20,25 @@ function App() {
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [testing, setTest] = useState("");
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [accountInfo, setAccountInfo] = useState([
+    {id: ""},
+    {display_name: ""},
+    {user_email: ""},
+    {password: ""},
+    {photo: ""}])
+
+  const onLogin = ({id, display_name, user_email, password, photo}) => {
+    setAccountInfo(id, display_name, user_email, password, photo);
+    setLoggedIn(true);
+  }
+
+  function logout(){
+    setAccountInfo("","","","","");
+    setLoggedIn(false);
+  }
 
   const onKeyPress = (event) => {
 
@@ -49,6 +67,7 @@ function App() {
     }
   };
 
+
   const pageSwitch = (param) => {
     console.log(param)
     switch (param) {
@@ -69,10 +88,16 @@ function App() {
         return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
       case 4:
-        return <Settings loggedIn={loggedIn} />
+        return <Settings logout={logout} loggedIn={loggedIn} />
         break;
       default:
-        return 'poop'
+
+        return (<div>
+          <button onClick={test} />
+          <div style={{ color: "white" }} >
+            {testing}
+          </div>
+        </div>)
         break;
     }
   }
@@ -80,7 +105,7 @@ function App() {
   const request = require('postman-request');
 
   const options = {
-    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=1',
+    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=10',
   };
 
   function callback(error, response, body) {
@@ -114,15 +139,14 @@ function App() {
           <TaskBar page={page} setPage={setPage} />
         </div>
         <div className="landing">
-          <TitleBar openSignIn={openSignIn} />
+          <TitleBar loggedIn={loggedIn} openSignIn={openSignIn} />
           <div className="main-window">
-            <button onClick={test} />
-            {testing}
             {pageSwitch(page)}
-            <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
         </div>
+        <SignInModal onLogin={onLogin} showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
       </div>
+      
     </div>
   );
 }
