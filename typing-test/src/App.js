@@ -20,8 +20,25 @@ function App() {
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [testing, setTest] = useState("");
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [accountInfo, setAccountInfo] = useState([
+    {id: ""},
+    {display_name: ""},
+    {user_email: ""},
+    {password: ""},
+    {photo: ""}])
+
+  const onLogin = ({id, display_name, user_email, password, photo}) => {
+    setAccountInfo(id, display_name, user_email, password, photo);
+    setLoggedIn(true);
+  }
+
+  function logout(){
+    setAccountInfo("","","","","");
+    setLoggedIn(false);
+  }
 
   const onKeyPress = (event) => {
 
@@ -71,7 +88,7 @@ function App() {
         return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
       case 4:
-        return <Settings loggedIn={loggedIn} />
+        return <Settings logout={logout} loggedIn={loggedIn} />
         break;
       default:
 
@@ -88,7 +105,7 @@ function App() {
   const request = require('postman-request');
 
   const options = {
-    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=1',
+    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=10',
   };
 
   function callback(error, response, body) {
@@ -122,13 +139,14 @@ function App() {
           <TaskBar page={page} setPage={setPage} />
         </div>
         <div className="landing">
-          <TitleBar openSignIn={openSignIn} />
+          <TitleBar loggedIn={loggedIn} openSignIn={openSignIn} />
           <div className="main-window">
             {pageSwitch(page)}
-            <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
         </div>
+        <SignInModal onLogin={onLogin} showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
       </div>
+      
     </div>
   );
 }

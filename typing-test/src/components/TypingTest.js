@@ -7,7 +7,7 @@ const TypingTest = (props) => {
 
     const [staticCountdown, setStaticCountdown] = useState(15);
     const [timer, setTimer] = useState(15);
-    const [countdown, setCountdown] = useState(3);
+    const [countdown, setCountdown] = useState(1);
     const [numEntries, setNumEntries] = useState(0);
     const [WPMTime, setWPMTime] = useState(1);
 
@@ -15,7 +15,7 @@ const TypingTest = (props) => {
         props.setTimerActive(false);
         props.setIndex(0);
         setTimer(staticCountdown);
-        setCountdown(3);
+        setCountdown(1);
     }
 
     function useInterval(callback, delay) {
@@ -73,12 +73,6 @@ const TypingTest = (props) => {
                 <div style={props.timerActive && !props.inCountdown ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : { color: '#75749C' }} className="timer">
                     {timer}s
                 </div>
-
-                {props.timerActive ? <div className="wpm">
-
-                    Correct Entries: {props.index} <br />
-                    Your WPM: {grossWPM(props.index, staticCountdown - countdown)}
-                </div> : null}
 
                 <div className="right-elements">
                     <div className="timer-select">
