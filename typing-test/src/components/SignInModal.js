@@ -23,8 +23,11 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
     }
 
     function submitForm() {
-
-        login();
+        if(showSignIn){
+            login();
+        }else if(showSignUp){
+            register();
+        }
 
         setShowSignIn(false);
         values.email = '';
@@ -59,6 +62,14 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
         [setShowSignIn, showSignIn]
     );
 
+    const onFormSubmit = (e) => {
+        if(showSignUp){
+            handleSubmit(e);
+        }else if(showSignIn){
+            submitForm();
+        }
+    }
+
     useEffect(
         () => {
             document.addEventListener('keydown', keyPress);
@@ -73,7 +84,7 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
             {showSignIn ? (
                 <div className='Background' onClick={closeModal} ref={modalRef}>
                     <animated.div >
-                        <form onSubmit={handleSubmit} noValidate>
+                        <form onSubmit={onFormSubmit} noValidate>
                             <div className='ModalWrapper' showSignIn={showSignIn}>
                                 <MdClose
                                     aria-label='Close modal'
