@@ -10,6 +10,7 @@ import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
 import Settings from './components/Settings';
 import { colors } from '@react-spring/shared';
+import Training from './components/Training';
 
 function App() {
 
@@ -86,6 +87,9 @@ function App() {
         break;
       case 1:
         return (loggedIn ? <Account /> : <OfflineAccount />);
+        break;
+      case 2:
+        return (<Training />)
         break;
       case 4:
         return <Settings logout={logout} loggedIn={loggedIn} />
