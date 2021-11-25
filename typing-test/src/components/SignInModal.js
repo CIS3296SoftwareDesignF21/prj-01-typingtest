@@ -23,9 +23,9 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
     }
 
     function submitForm() {
-        if(showSignIn){
+        if (showSignIn) {
             login();
-        }else if(showSignUp){
+        } else if (showSignUp) {
             register();
         }
 
@@ -63,9 +63,9 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
     );
 
     const onFormSubmit = (e) => {
-        if(showSignUp){
+        if (showSignUp) {
             handleSubmit(e);
-        }else if(showSignIn){
+        } else if (showSignIn) {
             submitForm();
         }
     }

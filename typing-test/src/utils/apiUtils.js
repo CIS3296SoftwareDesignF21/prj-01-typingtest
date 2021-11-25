@@ -30,6 +30,7 @@ function getAccInfo(error, response, body) {
     } else {
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         console.log('error:', error); // Print the error if one occurred
+        account.account_id = -1;
     }
 }
 
@@ -40,6 +41,8 @@ export function callLogin(username, password) {
         + '&pw=' + password;
 
     request(options, getAccInfo);
+
+    console.log(account)
 
     return account;
 }

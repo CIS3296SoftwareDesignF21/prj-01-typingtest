@@ -5,12 +5,10 @@ import SignInModal from './components/SignInModal';
 import TitleBar from './components/TitleBar';
 import TaskBar from './components/TaskBar';
 import './App.css';
-import { ThemeProvider } from 'styled-components';
 import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
-import Settings from './components/Settings';
-import { colors } from '@react-spring/shared';
 import Training from './components/Training';
+import Settings from './components/Settings.js';
 
 function App() {
 
@@ -31,9 +29,17 @@ function App() {
     {password: ""},
     {photo: ""}])
 
-  const onLogin = ({id, display_name, user_email, password, photo}) => {
-    setAccountInfo(id, display_name, user_email, password, photo);
-    setLoggedIn(true);
+  const onLogin = (account) => {
+
+    // Need to fix async issue when fetching from api
+    // need to figure out way to wait for response before this function call
+
+    // if(account.account_id != -1){
+      setAccountInfo(account);
+      setLoggedIn(true);
+    // }else{
+    //   alert('Account does not exist');
+    // }
   }
 
   function logout(){
@@ -95,33 +101,8 @@ function App() {
         return <Settings logout={logout} loggedIn={loggedIn} />
         break;
       default:
-
-        return (<div>
-          <button onClick={test} />
-          <div style={{ color: "white" }} >
-            {testing}
-          </div>
-        </div>)
         break;
     }
-  }
-
-  const request = require('postman-request');
-
-  const options = {
-    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=10',
-  };
-
-  function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      setTest(body);
-      const info = JSON.parse(body);
-      console.log(info);
-    }
-  }
-
-  const test = () => {
-    request(options, callback);
   }
 
   const openSignIn = () => {
