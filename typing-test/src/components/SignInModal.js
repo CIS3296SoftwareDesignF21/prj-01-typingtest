@@ -6,55 +6,28 @@ import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 // import * as db from '../utils/dbUtils.js';
 
+import * as api from '../utils/apiUtils.js'
+
 const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
 
     const modalRef = useRef();
 
     const [showSignUp, setShowSignUp] = useState(false);
 
-    const request = require('postman-request');
-
-    const options = {
-        url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=7',
-    };
-
-    function login(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            const info = JSON.parse(body);
-            console.log(info);
-            // id, display_name, user_email, password, photo
-            if(info !== []){
-                console.log("STATUS: Login Success");
-                onLogin(
-                    info[0].account_id,
-                    info[0].display_name,
-                    info[0].user_email,
-                    info[0].password,
-                    info[0].photo)
-            }
-        }
+    const login = () => {
+        onLogin(api.callLogin(values.username, values.password));
     }
 
-    function signup(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            const info = JSON.parse(body);
-            console.log(info);
-        }
-    }
-
-    const test = () => {
-        request(options, login);
+    const register = () => {
+        onLogin(api.callRegisterAccount(values.email, values.username, values.password));
     }
 
     function submitForm() {
-
-        console.log("works");
-
-        options.url = 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/login?email='
-            + values.username
-            + '&pw=' + values.password;
-
-        test();
+        if (showSignIn) {
+            login();
+        } else if (showSignUp) {
+            register();
+        }
 
         setShowSignIn(false);
         values.email = '';
@@ -68,13 +41,6 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
         validate
     );
 
-    const animation = useSpring({
-        config: {
-            duration: 175
-        },
-        opacity: showSignIn ? 1 : 0,
-        transform: showSignIn ? `translateY(0%)` : `translateY(+100%)`
-    });
 
     const openSignUp = () => {
         setShowSignUp(prev => !prev);
@@ -96,6 +62,14 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
         [setShowSignIn, showSignIn]
     );
 
+    const onFormSubmit = (e) => {
+        if (showSignUp) {
+            handleSubmit(e);
+        } else if (showSignIn) {
+            submitForm();
+        }
+    }
+
     useEffect(
         () => {
             document.addEventListener('keydown', keyPress);
@@ -110,7 +84,7 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
             {showSignIn ? (
                 <div className='Background' onClick={closeModal} ref={modalRef}>
                     <animated.div >
-                        <form onSubmit={handleSubmit} noValidate>
+                        <form onSubmit={onFormSubmit} noValidate>
                             <div className='ModalWrapper' showSignIn={showSignIn}>
                                 <MdClose
                                     aria-label='Close modal'
