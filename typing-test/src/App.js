@@ -45,7 +45,7 @@ function App() {
         break;
 
       default:
-        if (event.key === words[index] && timerActive && !inCountdown) {
+        if (event.key === randomWords[index] && timerActive && !inCountdown) {  //this used to be words[index], but that doesnt work
           setIndex((index) => index + 1);
         }
         break;
@@ -62,7 +62,7 @@ function App() {
           inCountdown={inCountdown}
           setInCountdown={setInCountdown}
           setIndex={setIndex}
-          words={randomWords}             //Instead of using words, we are trying to use random words.
+          words={randomWords}             //Instead of using words, we are trying to use random words. /randomWords={randomWords}I tried creating a new instance, but found out that its not needed
           index={index}
           countdownToggleChecked={countdownToggleChecked}
           setCountdownToggleChecked={setCountdownToggleChecked}
@@ -86,7 +86,7 @@ function App() {
 
   useEffect(() => {   //using another useEffect so random words does not refresh everytime.
 
-    setRandomWords(randWordsFunc({exactly:25, join:' '}));  //Setting how many words right for the test right here.
+    setRandomWords(randWordsFunc({exactly:25, join:' '}));  //Setting how many words given for the test right here.
 
   }, [])
 
