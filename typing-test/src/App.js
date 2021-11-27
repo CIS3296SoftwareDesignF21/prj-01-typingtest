@@ -115,7 +115,7 @@ function App() {
 
   useEffect(() => {   //using another useEffect so random words does not refresh everytime.
 
-    setRandomWords(randWordsFunc({exactly:25, join:' '}));  //Setting how many words given for the test right here.
+    setRandomWords(randWordsFunc({exactly:45, join:' '}));  //Setting how many words given for the test right here.
 
   }, [])
 
