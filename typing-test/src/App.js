@@ -5,11 +5,10 @@ import SignInModal from './components/SignInModal';
 import TitleBar from './components/TitleBar';
 import TaskBar from './components/TaskBar';
 import './App.css';
-import { ThemeProvider } from 'styled-components';
 import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
-import Settings from './components/Settings';
-import { colors } from '@react-spring/shared';
+import Training from './components/Training';
+import Settings from './components/Settings.js';
 
 function App() {
 
@@ -30,15 +29,27 @@ function App() {
     {password: ""},
     {photo: ""}])
 
-  const onLogin = ({id, display_name, user_email, password, photo}) => {
-    setAccountInfo(id, display_name, user_email, password, photo);
-    setLoggedIn(true);
+  const onLogin = (account) => {
+
+    // Need to fix async issue when fetching from api
+    // need to figure out way to wait for response before this function call
+
+    // if(account.account_id != -1){
+      setAccountInfo(account);
+      setLoggedIn(true);
+    // }else{
+    //   alert('Account does not exist');
+    // }
   }
 
   function logout(){
     setAccountInfo("","","","","");
     setLoggedIn(false);
   }
+
+  const[randomWords, setRandomWords] = useState("");    //setting its use state
+  var randWordsFunc = require('random-words');          //Must require random-words
+
 
   const onKeyPress = (event) => {
 
@@ -60,7 +71,7 @@ function App() {
         break;
 
       default:
-        if (event.key === words[index] && timerActive && !inCountdown) {
+        if (event.key === randomWords[index] && timerActive && !inCountdown) {  //this used to be words[index], but that doesnt work
           setIndex((index) => index + 1);
         }
         break;
@@ -78,7 +89,7 @@ function App() {
           inCountdown={inCountdown}
           setInCountdown={setInCountdown}
           setIndex={setIndex}
-          words={words}
+          words={randomWords}             //Instead of using words, we are trying to use random words. /randomWords={randomWords}I tried creating a new instance, but found out that its not needed
           index={index}
           countdownToggleChecked={countdownToggleChecked}
           setCountdownToggleChecked={setCountdownToggleChecked}
@@ -87,42 +98,27 @@ function App() {
       case 1:
         return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
+      case 2:
+        return (<Training />)
+        break;
       case 4:
         return <Settings logout={logout} loggedIn={loggedIn} />
         break;
       default:
-
-        return (<div>
-          <button onClick={test} />
-          <div style={{ color: "white" }} >
-            {testing}
-          </div>
-        </div>)
         break;
     }
-  }
-
-  const request = require('postman-request');
-
-  const options = {
-    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=10',
-  };
-
-  function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      setTest(body);
-      const info = JSON.parse(body);
-      console.log(info);
-    }
-  }
-
-  const test = () => {
-    request(options, callback);
   }
 
   const openSignIn = () => {
     setShowSignIn(prev => !prev);
   };
+
+  useEffect(() => {   //using another useEffect so random words does not refresh everytime.
+
+    setRandomWords(randWordsFunc({exactly:45, join:' '}));  //Setting how many words given for the test right here.
+
+  }, [])
+
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
