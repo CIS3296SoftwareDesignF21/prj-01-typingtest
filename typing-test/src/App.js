@@ -17,7 +17,7 @@ function App() {
 
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
-  const [inCountdown, setInCountdown] = useState(false);
+  const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [testing, setTest] = useState("");
 
@@ -27,14 +27,7 @@ function App() {
     {display_name: ""},
     {user_email: ""},
     {password: ""},
-    {photo: ""}
-  ]);
-  
-  const [avgWPM, setAvgWPM] = useState(0);
-  const [topWPM, setTopWPM] = useState(0);
-  const [totalWords, setTotalWords] = useState(0);
-  const [totalTime, setTotalTime] = useState(0);
-  const [letterMisses, setLetterMisses] = useState([]);
+    {photo: ""}])
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
   const onLogin = async (account) => {
