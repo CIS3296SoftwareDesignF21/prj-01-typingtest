@@ -43,7 +43,7 @@ export function callLogin(username, password) {
 
     console.log(account)
 
-    return account;
+    return JSON.stringify(account);
 }
 
 export function callRegisterAccount(email, username, password) {
