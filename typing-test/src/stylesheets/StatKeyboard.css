@@ -1,0 +1,177 @@
+.keyboard-base{
+    background: linear-gradient(241.25deg, rgba(41, 39, 85, 0.35) 4.4%, rgba(41, 39, 84, 0.78) 61.77%, rgba(27, 24, 66, 0.35) 119.94%);
+    box-shadow: 0px 51px 69px rgba(23, 18, 43, 0.585739);
+    backdrop-filter: blur(23px);
+    border-radius: 10px;
+    padding: 1%;
+    width: 60%;
+    height: fit-content;
+}
+
+.keyboard-img{
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.key{
+    position: absolute;
+    height: 15%;
+    width: 6%;
+    z-index: 1;
+}
+
+#q{
+    left: 13.25%;
+    top: 27.5%;
+}
+
+#w{
+    left: 19.5%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#e{
+    left: 25.5%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#r{
+    left: 31.5%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#t{
+    left: 38%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#y{
+    left: 44%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#u{
+    left: 50%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#i{
+    left: 56%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#o{
+    left: 62.5%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#p{
+    left: 68.5%;
+    top: 27.5%;
+    background-color: blueviolet;
+}
+
+#a{
+    left: 15%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#s{
+    left: 21%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#d{
+    left: 27%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#f{
+    left: 33%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#g{
+    left: 39.5%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#h{
+    left: 45.5%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#j{
+    left: 51.5%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#k{
+    left: 58%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#l{
+    left: 64%;
+    top: 43%;
+    background-color: blueviolet;
+}
+
+#z{
+    left: 18%;
+    top: 58%;
+    background-color: tomato;
+}
+
+#x{
+    left: 24%;
+    top: 58%;
+    background-color: tomato;
+}
+
+#c{
+    left: 30%;
+    top: 58%;
+    background-color: tomato;
+}
+
+#v{
+    left: 36.5%;
+    top: 58%;
+    background-color: tomato;
+}
+
+#b{
+    left: 42.5%;
+    top: 58%;
+    background-color: tomato;
+}
+
+#n{
+    left: 48.5%;
+    top: 58%;
+    background-color: tomato;
+}
+
+#m{
+    left: 54.5%;
+    top: 58%;
+    background-color: tomato;
+}

@@ -1,7 +1,6 @@
 const request = require('postman-request');
 
-const options = {
-    url: ''
+var options = {
 };
 
 var account = {
@@ -44,18 +43,28 @@ export function callLogin(username, password) {
 
     console.log(account)
 
-    return account;
+    return JSON.stringify(account);
 }
 
 export function callRegisterAccount(email, username, password) {
 
+    console.log(email, username, password);
+
     // needs to be changed with register api link
-    options.url = 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/login?email='
-        + username
-        + '&pw=' + password;
+    options = {
+        headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+        url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/signup',
+        body: JSON.stringify( {
+        "dispName": username,
+        "email": email,
+        "pw": password
+        })
+    };
     // ------------------------------------------
 
-    request(options, getAccInfo);
+    console.log(options);
+
+    request.post(options, getAccInfo);
 
     return account;
 }

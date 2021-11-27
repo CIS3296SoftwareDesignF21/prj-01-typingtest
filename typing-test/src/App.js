@@ -22,14 +22,9 @@ function App() {
   const [testing, setTest] = useState("");
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [accountInfo, setAccountInfo] = useState([
-    {id: ""},
-    {display_name: ""},
-    {user_email: ""},
-    {password: ""},
-    {photo: ""}])
+  const [accountInfo, setAccountInfo] = useState()
 
-  const onLogin = (account) => {
+  function onLogin(account){
 
     // Need to fix async issue when fetching from api
     // need to figure out way to wait for response before this function call
@@ -40,10 +35,13 @@ function App() {
     // }else{
     //   alert('Account does not exist');
     // }
+
+    console.log("1: " + account);
+    console.log("2: " + accountInfo);
   }
 
   function logout(){
-    setAccountInfo("","","","","");
+    setAccountInfo();
     setLoggedIn(false);
   }
 
@@ -102,7 +100,7 @@ function App() {
         return (<Training />)
         break;
       case 4:
-        return <Settings logout={logout} loggedIn={loggedIn} />
+        return <Settings accountInfo={accountInfo} logout={logout} loggedIn={loggedIn} />
         break;
       default:
         break;
@@ -115,7 +113,7 @@ function App() {
 
   useEffect(() => {   //using another useEffect so random words does not refresh everytime.
 
-    setRandomWords(randWordsFunc({exactly:25, join:' '}));  //Setting how many words given for the test right here.
+    setRandomWords(randWordsFunc({exactly:45, join:' '}));  //Setting how many words given for the test right here.
 
   }, [])
 
