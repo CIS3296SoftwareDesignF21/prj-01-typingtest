@@ -15,17 +15,6 @@ const TitleBar = ({ loggedIn, openSignIn }) => {
                                 Login
                             </div>
                         }
-                        <div id="min-button" className="button">
-                            <MdRemove />
-                        </div>
-
-                        <div id="max-button" className="button">
-                            <MdCropSquare />
-                        </div>
-
-                        <div id="close-button" className="close">
-                            <MdClose />
-                        </div>
 
                     </div>
                 </div>

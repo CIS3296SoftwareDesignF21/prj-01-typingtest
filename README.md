@@ -45,6 +45,8 @@ npm install styled-components
 npm install react-icons
 npm install material-design-icons
 npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
+npm i postman-request
+npm install random-words
 ```
 - Clone Repo
 ```

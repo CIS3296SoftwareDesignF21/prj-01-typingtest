@@ -29,7 +29,7 @@ function createWindow (width, height) {
       devTools: false 
     },
     autoHideMenuBar: true,
-    frame: false
+    frame: true
   })
 
   //load the index.html from a url

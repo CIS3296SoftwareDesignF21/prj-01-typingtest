@@ -19,7 +19,7 @@ const Settings = ({ logout, loggedIn }) => {
                 <ColoredLine color="#5B5A99" />
             </div>
             <div className="s-section">
-                Some other settings
+                More settings coming soon!
             </div>
         </div>
     )
