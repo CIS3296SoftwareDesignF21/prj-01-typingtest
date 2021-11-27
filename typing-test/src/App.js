@@ -22,6 +22,7 @@ function App() {
   const [testing, setTest] = useState("");
 
   const [loggedIn, setLoggedIn] = useState(false);
+
   const [accountInfo, setAccountInfo] = useState([
     {account_id: ""},
     {display_name: ""},
@@ -32,6 +33,7 @@ function App() {
   const delay = ms => new Promise(res => setTimeout(res, ms));
   const onLogin = async (account) => {
     await(delay(2000));
+
     // Need to fix async issue when fetching from api
     // need to figure out way to wait for response before this function call
     console.log(account);
@@ -41,10 +43,11 @@ function App() {
     }else{
       alert('Account does not exist');
     }
+
   }
 
   function logout(){
-    setAccountInfo("","","","","");
+    setAccountInfo();
     setLoggedIn(false);
   }
 
@@ -103,7 +106,7 @@ function App() {
         return (<Training />)
         break;
       case 4:
-        return <Settings logout={logout} loggedIn={loggedIn} />
+        return <Settings accountInfo={accountInfo} logout={logout} loggedIn={loggedIn} />
         break;
       default:
         break;
