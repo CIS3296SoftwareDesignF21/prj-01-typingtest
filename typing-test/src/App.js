@@ -47,6 +47,10 @@ function App() {
     setLoggedIn(false);
   }
 
+  const[randomWords, setRandomWords] = useState("");    //setting its use state
+  var randWordsFunc = require('random-words');          //Must require random-words
+
+
   const onKeyPress = (event) => {
 
     switch (event.key) {
@@ -67,7 +71,7 @@ function App() {
         break;
 
       default:
-        if (event.key === words[index] && timerActive && !inCountdown) {
+        if (event.key === randomWords[index] && timerActive && !inCountdown) {  //this used to be words[index], but that doesnt work
           setIndex((index) => index + 1);
         }
         break;
@@ -85,7 +89,7 @@ function App() {
           inCountdown={inCountdown}
           setInCountdown={setInCountdown}
           setIndex={setIndex}
-          words={words}
+          words={randomWords}             //Instead of using words, we are trying to use random words. /randomWords={randomWords}I tried creating a new instance, but found out that its not needed
           index={index}
           countdownToggleChecked={countdownToggleChecked}
           setCountdownToggleChecked={setCountdownToggleChecked}
@@ -108,6 +112,13 @@ function App() {
   const openSignIn = () => {
     setShowSignIn(prev => !prev);
   };
+
+  useEffect(() => {   //using another useEffect so random words does not refresh everytime.
+
+    setRandomWords(randWordsFunc({exactly:25, join:' '}));  //Setting how many words given for the test right here.
+
+  }, [])
+
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
