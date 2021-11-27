@@ -15,7 +15,7 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
     const request = require('postman-request');
 
     const options = {
-        url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=7',
+        url: '',
     };
 
     function login(error, response, body) {

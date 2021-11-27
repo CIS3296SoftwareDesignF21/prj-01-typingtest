@@ -18,7 +18,7 @@ function App() {
 
   const [showSignIn, setShowSignIn] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
-  const [inCountdown, setInCountdown] = useState(false)
+  const [inCountdown, setInCountdown] = useState(false);
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [testing, setTest] = useState("");
 
@@ -28,7 +28,14 @@ function App() {
     {display_name: ""},
     {user_email: ""},
     {password: ""},
-    {photo: ""}])
+    {photo: ""}
+  ]);
+  
+  const [avgWPM, setAvgWPM] = useState(0);
+  const [topWPM, setTopWPM] = useState(0);
+  const [totalWords, setTotalWords] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
+  const [letterMisses, setLetterMisses] = useState([]);
 
   const onLogin = ({id, display_name, user_email, password, photo}) => {
     setAccountInfo(id, display_name, user_email, password, photo);
@@ -105,19 +112,29 @@ function App() {
   const request = require('postman-request');
 
   const options = {
-    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getaccbyid?accId=10',
+    headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/signup',
+    body: JSON.stringify( {
+      "dispName": "fff",
+      "email": "test56@website.com",
+      "pw": "2222"
+    })
+  
   };
 
   function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
       setTest(body);
-      const info = JSON.parse(body);
+      const info = body;
       console.log(info);
     }
   }
 
   const test = () => {
-    request(options, callback);
+   // await new Promise(resolve => setTimeout(resolve, 3000));
+    console.log(options);
+    request.post(options, callback);
+    console.log(options);
   }
 
   const openSignIn = () => {
