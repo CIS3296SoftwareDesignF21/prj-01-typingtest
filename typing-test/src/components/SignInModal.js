@@ -15,7 +15,7 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
     const [showSignUp, setShowSignUp] = useState(false);
 
     const login = () => {
-        onLogin(api.callLogin(values.username, values.password));
+        onLogin(api.callLogin(values.username, values.password));        
     }
 
     const register = () => {
@@ -23,9 +23,11 @@ const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
     }
 
     function submitForm() {
-        if (showSignIn) {
+        if (!showSignUp) {
+            console.log("Login Pressed");
             login();
         } else if (showSignUp) {
+            console.log("SignUp Pressed");
             register();
         }
 

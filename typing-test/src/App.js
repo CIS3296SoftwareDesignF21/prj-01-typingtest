@@ -23,7 +23,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [accountInfo, setAccountInfo] = useState([
-    {id: ""},
+    {account_id: ""},
     {display_name: ""},
     {user_email: ""},
     {password: ""},
@@ -36,17 +36,18 @@ function App() {
   const [totalTime, setTotalTime] = useState(0);
   const [letterMisses, setLetterMisses] = useState([]);
 
-  const onLogin = (account) => {
-
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const onLogin = async (account) => {
+    await(delay(2000));
     // Need to fix async issue when fetching from api
     // need to figure out way to wait for response before this function call
-
-    // if(account.account_id != -1){
+    console.log(account);
+    if(account.account_id != -1){
       setAccountInfo(account);
       setLoggedIn(true);
-    // }else{
-    //   alert('Account does not exist');
-    // }
+    }else{
+      alert('Account does not exist');
+    }
   }
 
   function logout(){
@@ -116,35 +117,6 @@ function App() {
     }
   }
 
-<<<<<<< HEAD
-  const request = require('postman-request');
-
-  const options = {
-    headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
-    url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/signup',
-    body: JSON.stringify( {
-      "dispName": "fff",
-      "email": "test56@website.com",
-      "pw": "2222"
-    })
-  
-  };
-
-  function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      setTest(body);
-      const info = body;
-      console.log(info);
-    }
-  }
-
-  const test = () => {
-   // await new Promise(resolve => setTimeout(resolve, 3000));
-    console.log(options);
-    request.post(options, callback);
-    console.log(options);
-  }
-=======
   const openSignIn = () => {
     setShowSignIn(prev => !prev);
   };
@@ -154,7 +126,6 @@ function App() {
     setRandomWords(randWordsFunc({exactly:45, join:' '}));  //Setting how many words given for the test right here.
 
   }, [])
->>>>>>> 6d40632d4210064ac093711827dce64b7fd28fce
 
 
   useEffect(() => {

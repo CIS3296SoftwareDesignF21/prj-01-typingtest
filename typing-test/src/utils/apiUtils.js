@@ -1,15 +1,15 @@
 const request = require('postman-request');
-
+const rp = require('request-promise');
 var options = {
 };
 
 var account = {
     account_id: -1,
-    display_name: '',
-    user_email: '',
-    password: '',
+    display_name: "",
+    user_email: "",
+    password: "",
     photo: -1
-}
+};
 
 function getAccInfo(error, response, body) {
 
@@ -25,6 +25,7 @@ function getAccInfo(error, response, body) {
             account.user_email = info[0].user_email;
             account.password = info[0].password;
             account.photo = info[0].photo;
+            return info;
         }
     } else {
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -34,17 +35,53 @@ function getAccInfo(error, response, body) {
 }
 
 export function callLogin(username, password) {
+    account = {
+        account_id: -1,
+        display_name: "",
+        user_email: "",
+        password: "",
+        photo: -1
+    };
 
     options.url = 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/login?email='
-        + username
-        + '&pw=' + password;
+    + username
+    + '&pw=' + password;
 
-    request(options, getAccInfo);
-
-    console.log(account)
-
+    rp(options)
+        .then(function(acc){
+            console.log(acc);
+            if(acc != "Invalid Login Credentials"){
+                var info = JSON.parse(acc);
+                account.account_id = info[0].account_id;
+                account.display_name = info[0].display_name;
+                account.user_email = info[0].user_email;
+                account.password = info[0].password;
+                account.photo = info[0].photo;
+                console.log(account);
+            }
+        })
+        .finally(function(){
+            console.log(account);
+        })
+        .catch(function (err) {
+    
+    });
+    //console.log(account)
     return account;
 }
+// export function callLogin(username, password) {
+
+//         options.url = 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/login?email='
+//         + username
+//         + '&pw=' + password;
+
+//         request(options, getAccInfo);
+
+//         console.log(account)
+
+//         return account;
+//  }
+   
 
 export function callRegisterAccount(email, username, password) {
 
