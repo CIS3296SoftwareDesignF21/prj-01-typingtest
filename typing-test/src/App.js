@@ -9,6 +9,7 @@ import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
 import Training from './components/Training';
 import Settings from './components/Settings.js';
+import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
-  const [testing, setTest] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -27,29 +28,34 @@ function App() {
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
   const onLogin = async (account) => {
-    await(delay(2000));
+
+    setLoading(true);
+
+    await (delay(2000));
+
+    setLoading(false);
 
     console.log(account);
-    if(account.account_id != -1){
+    if (account.account_id != -1) {
       setAccountInfo(account);
       setLoggedIn(true);
-    }else{
+    } else {
       alert('Account does not exist');
     }
 
   }
 
-  function logout(){
+  function logout() {
     setAccountInfo();
     setLoggedIn(false);
   }
 
-  const[randomWords, setRandomWords] = useState("");    //setting its use state
+  const [randomWords, setRandomWords] = useState("");    //setting its use state
   var randWordsFunc = require('random-words');          //Must require random-words
 
 
-  function newWords(){
-    setRandomWords(randWordsFunc({exactly:45, join:' '}));
+  function newWords() {
+    setRandomWords(randWordsFunc({ exactly: 45, join: ' ' }));
   }
 
   const onKeyPress = (event) => {
@@ -139,12 +145,13 @@ function App() {
         <div className="landing">
           <TitleBar loggedIn={loggedIn} openSignIn={openSignIn} />
           <div className="main-window">
+            {loading ? <LoadingSpinner /> : null}
             {pageSwitch(page)}
           </div>
         </div>
         <SignInModal onLogin={onLogin} showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
       </div>
-      
+
     </div>
   );
 }
