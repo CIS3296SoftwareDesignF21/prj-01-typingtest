@@ -23,19 +23,12 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const [accountInfo, setAccountInfo] = useState([
-    {account_id: ""},
-    {display_name: ""},
-    {user_email: ""},
-    {password: ""},
-    {photo: ""}])
+  const [accountInfo, setAccountInfo] = useState({})
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
   const onLogin = async (account) => {
     await(delay(2000));
 
-    // Need to fix async issue when fetching from api
-    // need to figure out way to wait for response before this function call
     console.log(account);
     if(account.account_id != -1){
       setAccountInfo(account);
