@@ -4,6 +4,7 @@ import { MdAccountBox, MdRemoveRedEye } from 'react-icons/md'
 
 const AccountTile = ({ accountInfo, logout }) => {
    console.log("ac: " + accountInfo);
+
     return (
         
         <div className="base">
@@ -11,12 +12,12 @@ const AccountTile = ({ accountInfo, logout }) => {
                 <MdAccountBox className="account-icon" />
             </div>
             <div className="account-info">
-                <div className="acc-name">ID: {accountInfo}</div>
+                <div className="acc-name">ID: {accountInfo.display_name}</div>
                 <div className="acc-email">
-                    Email: buttface@gmail.com
+                    Email: {accountInfo.user_email}
                     </div>
                 <div className="acc-email">
-                    <div>Password: ****</div>
+                    <div>Password: {accountInfo.password}</div>
                     <MdRemoveRedEye />
                 </div>
             </div>
