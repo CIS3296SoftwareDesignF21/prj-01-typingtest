@@ -9,6 +9,7 @@ import OfflineAccount from './components/OfflineAccount';
 import Training from './components/Training';
 import Settings from './components/Settings.js';
 import LoadingSpinner from './components/LoadingSpinner';
+import { join } from 'lodash';
 
 function App() {
 
@@ -56,7 +57,13 @@ function App() {
   function newWords() {
     setRandomWords(randWordsFunc({ exactly: 45, join: ' ' }));
   }
+//INCREMENTS MISSED LETTER AND UPDATES ACCINFO
+  function incrementMissed(letter){
+    var jObj = JSON.parse(accountInfo.letter_misses);
+    jObj[letter] = jObj[letter]+1;
+    setAccountInfo({ ...accountInfo, letter_misses: JSON.stringify(jObj)});
 
+  }
   const onKeyPress = (event) => {
 
     switch (event.key) {
@@ -75,10 +82,15 @@ function App() {
       case "Escape":
         console.log("correct");
         break;
-
+//EDITED TO MAKE LETTER MISSES UPDATE
       default:
-        if (event.key === randomWords[index] && timerActive && !inCountdown) {  //this used to be words[index], but that doesnt work
-          setIndex((index) => index + 1);
+        if(timerActive && !inCountdown){
+          if (event.key === randomWords[index]) { 
+            setIndex((index) => index + 1);
+          }else if (event.key != randomWords[index]) {
+            incrementMissed(randomWords[index]);
+            console.log(accountInfo.letter_misses);
+          }
         }
         break;
     }
@@ -133,7 +145,7 @@ function App() {
     return () => {
       document.removeEventListener('keydown', onKeyPress);
     };
-  }, [index, timerActive, inCountdown, page])
+  }, [accountInfo.letter_misses, index, timerActive, inCountdown, page])
 
   return (
     <div className="App">
