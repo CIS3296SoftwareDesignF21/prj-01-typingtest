@@ -1,9 +1,10 @@
 # Typing Test
+
 ### [Project Proposal](https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14)
 ### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
-### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week1.md)
-### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week2.md)
-
+### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week1.md)
+### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week2.md)
+### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week3.md)
 
 ## Project Description
 
@@ -23,35 +24,66 @@ Because this project is a typing test, the team arranged what we thought were th
 By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
 To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
 
-
-## How to Run
-```
-cd typing-test
-./Open.bat
-npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
-```
-## How to Install
-- [Download Latest Release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.2.0-pre-release/typing-test-win32-x64.zip)
- 
-- Run typing-test.exe
-
-## Vision Statement
+## Why Use?
 
 For any user who would like to improve their typing skills. (Typing Test) is a typing simulator that allows users to learn pratical typing skills, improve their words per minute, and gain good typing habits, all while having fun. Unlike TypeRacer, our product achieves a feature-rich program with an elegant user interface that is utilized as an executable desktop application. 
 
-## UML
-There is an Index that will have single page application using the React and Electron frameworks. There will be stylesheets to provide visual elements. The app will be the main page where the typing will be displayed. There will be multiple components within the creation of the app. Each have specifiic functionality. Title bar for navigation. Accounts for login and register, with designated attributes. Statistcs, displays users data, Scoreboard, displays global data. Use of AWS and mySQL for Database storage.
-![UML Diagram](TypingTest_UML.png)
+## Client Install
 
-## User Personas
+- [Download Latest Release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip)
+- Extract .zip file 
+- Run typing-test.exe
 
-![Learner](User_Persona-Learner.png)
-![Upgrader](User_Persona-Upgrader.png)
-![Play Tester](User_Persona-Playtester.png)
+## Developer Install
+
+- Install Node JS 16.13.0 LTS ([External Site](https://nodejs.org/en/))
+- Download Dependencies ([More Details](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/network/dependencies))
+```
+npm install -g electron
+npm install electron-squirrel-startup --save
+npm install react react-dom --save
+npm install react-scripts --save
+npm install -g node@10.9.0
+npm install react-spring
+npm install mysql
+npm install web-vitals
+npm install styled-components
+npm install react-icons
+npm install material-design-icons
+npm i -D electron-devtools-installer && npm i -D concurrently@5.2.0 wait-on@5.1.0 && npm i electron-is-dev@1.2.0
+npm i postman-request
+npm install random-words
+```
+- Clone Repo
+```
+git clone https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest
+```
+## Open & Run 
+- Recommemded IDE: [Visual Studio Code](https://code.visualstudio.com/download)
+### Open Source Code
+- Navigate to Cloned Repository Direcctory
+- Utilize VS Code 
+```
+cd prj-01-typingtest/typing-test
+code .
+```
+### Run
+-Run .bat file to connect to server and open electron app
+```
+cd prj-01-typingtest/typing-test
+./Open.bat
+```
+
+## [UML](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/UML/UML.md)
+
+## [User Personas](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/UserPersonas/UserPersonas.md)
+
 
 
 ## Releases
 - [0.1.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.1.0/typing-test-win32-x64.rar)
 
 - [0.2.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.2.0-pre-release/typing-test-win32-x64.zip)
+
+- [0.3.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip)
 

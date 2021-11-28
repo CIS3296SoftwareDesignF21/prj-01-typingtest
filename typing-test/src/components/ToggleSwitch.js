@@ -4,9 +4,9 @@ import '../stylesheets/ToggleSwitch.css'
 const ToggleSwitch = ({countdownToggleChecked, onToggle}) => {
 
     const blah = (e) => {
-        console.log("Actual: " + e.target.checked)
-        onToggle(e.target.checked)
+        console.log("Event: " + e.target.checked)
         console.log("Reality: " + countdownToggleChecked)
+        onToggle(e.target.checked)
     }
     return (
         <div className="cd-switch-wrapper">
@@ -18,7 +18,7 @@ const ToggleSwitch = ({countdownToggleChecked, onToggle}) => {
                     Off
                 </div>
                 <div>
-                    <label class="switch">
+                    <label className="switch">
                         <input 
                             type="checkbox"
                             checked={countdownToggleChecked}

@@ -5,10 +5,11 @@ import SignInModal from './components/SignInModal';
 import TitleBar from './components/TitleBar';
 import TaskBar from './components/TaskBar';
 import './App.css';
-import { ThemeProvider } from 'styled-components';
 import Account from './components/Account.js';
 import OfflineAccount from './components/OfflineAccount';
-import Settings from './components/Settings';
+import Training from './components/Training';
+import Settings from './components/Settings.js';
+import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
 
@@ -19,11 +20,43 @@ function App() {
   const [timerActive, setTimerActive] = useState(false);
   const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const[randomWords, setRandomWords] = useState("");    //setting its use state
+  const [accountInfo, setAccountInfo] = useState({})
+
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const onLogin = async (account) => {
+
+    setLoading(true);
+
+    await (delay(2000));
+
+    setLoading(false);
+
+    console.log(account);
+    if (account.account_id != -1) {
+      setAccountInfo(account);
+      setLoggedIn(true);
+    } else {
+      alert('Account does not exist');
+    }
+
+  }
+
+  function logout() {
+    setAccountInfo();
+    setLoggedIn(false);
+  }
+
+  const [randomWords, setRandomWords] = useState("");    //setting its use state
   var randWordsFunc = require('random-words');          //Must require random-words
 
+
+  function newWords() {
+    setRandomWords(randWordsFunc({ exactly: 45, join: ' ' }));
+  }
 
   const onKeyPress = (event) => {
 
@@ -52,6 +85,7 @@ function App() {
     }
   };
 
+
   const pageSwitch = (param) => {
     console.log(param)
     switch (param) {
@@ -66,16 +100,19 @@ function App() {
           index={index}
           countdownToggleChecked={countdownToggleChecked}
           setCountdownToggleChecked={setCountdownToggleChecked}
+          newWords={newWords}
         />
         break;
       case 1:
         return (loggedIn ? <Account /> : <OfflineAccount />);
         break;
-        case 4:
-          return <Settings loggedIn={loggedIn}/>
-          break;
+      case 2:
+        return (<Training />)
+        break;
+      case 4:
+        return <Settings accountInfo={accountInfo} logout={logout} loggedIn={loggedIn} />
+        break;
       default:
-        return 'poop'
         break;
     }
   }
@@ -86,7 +123,7 @@ function App() {
 
   useEffect(() => {   //using another useEffect so random words does not refresh everytime.
 
-    setRandomWords(randWordsFunc({exactly:25, join:' '}));  //Setting how many words given for the test right here.
+    newWords();  //Setting how many words given for the test right here.
 
   }, [])
 
@@ -106,13 +143,15 @@ function App() {
           <TaskBar page={page} setPage={setPage} />
         </div>
         <div className="landing">
-          <TitleBar openSignIn={openSignIn} />
+          <TitleBar loggedIn={loggedIn} openSignIn={openSignIn} />
           <div className="main-window">
+            {loading ? <LoadingSpinner /> : null}
             {pageSwitch(page)}
-            <SignInModal showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
           </div>
         </div>
+        <SignInModal onLogin={onLogin} showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
       </div>
+
     </div>
   );
 }

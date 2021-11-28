@@ -6,13 +6,30 @@ import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 // import * as db from '../utils/dbUtils.js';
 
-const SignInModal = ({ showSignIn, setShowSignIn }) => {
+import * as api from '../utils/apiUtils.js'
+
+const SignInModal = ({ onLogin, showSignIn, setShowSignIn }) => {
 
     const modalRef = useRef();
 
     const [showSignUp, setShowSignUp] = useState(false);
 
+    const login = () => {
+        onLogin(api.callLogin(values.username, values.password));        
+    }
+
+    const register = () => {
+        onLogin(api.callRegisterAccount(values.email, values.username, values.password));
+    }
+
     function submitForm() {
+        if (!showSignUp) {
+            console.log("Login Pressed");
+            login();
+        } else if (showSignUp) {
+            console.log("SignUp Pressed");
+            register();
+        }
 
         setShowSignIn(false);
         values.email = '';
@@ -26,13 +43,6 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
         validate
     );
 
-    const animation = useSpring({
-        config: {
-            duration: 175
-        },
-        opacity: showSignIn ? 1 : 0,
-        transform: showSignIn ? `translateY(0%)` : `translateY(+100%)`
-    });
 
     const openSignUp = () => {
         setShowSignUp(prev => !prev);
@@ -54,6 +64,14 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
         [setShowSignIn, showSignIn]
     );
 
+    const onFormSubmit = (e) => {
+        if (showSignUp) {
+            handleSubmit(e);
+        } else if (showSignIn) {
+            submitForm();
+        }
+    }
+
     useEffect(
         () => {
             document.addEventListener('keydown', keyPress);
@@ -68,7 +86,7 @@ const SignInModal = ({ showSignIn, setShowSignIn }) => {
             {showSignIn ? (
                 <div className='Background' onClick={closeModal} ref={modalRef}>
                     <animated.div >
-                        <form onSubmit={handleSubmit} noValidate>
+                        <form onSubmit={onFormSubmit} noValidate>
                             <div className='ModalWrapper' showSignIn={showSignIn}>
                                 <MdClose
                                     aria-label='Close modal'

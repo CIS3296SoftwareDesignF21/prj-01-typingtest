@@ -7,15 +7,16 @@ const TypingTest = (props) => {
 
     const [staticCountdown, setStaticCountdown] = useState(15);
     const [timer, setTimer] = useState(15);
-    const [countdown, setCountdown] = useState(3);
+    const [countdown, setCountdown] = useState(1);
     const [numEntries, setNumEntries] = useState(0);
-    const [WPMTime, setWPMTime] = useState(0);
+    const [WPMTime, setWPMTime] = useState(1);
 
-    function reset(){
+    function reset() {
         props.setTimerActive(false);
-            props.setIndex(0);
-            setTimer(staticCountdown);
-            setCountdown(3);
+        props.setIndex(0);
+        setTimer(staticCountdown);
+        setCountdown(1);
+        props.newWords();
     }
 
     function useInterval(callback, delay) {
@@ -53,18 +54,17 @@ const TypingTest = (props) => {
                 props.setInCountdown(false);
                 setNumEntries(0);
                 setWPMTime(staticCountdown);
-            }else{
+            } else {
                 setCountdown(countdown => countdown - 1)
             }
         } else {
             setTimer(timer => timer - 1);
             setNumEntries(props.index);
-            
         }
     }, props.timerActive ? 1000 : null);
 
-    const grossWPM = ()=> {
-        return ((numEntries/5)/WPMTime)*60;
+    const grossWPM = () => {
+        return (((numEntries / 5) / WPMTime) * 60).toFixed(2);
     };
 
     return (
@@ -74,17 +74,7 @@ const TypingTest = (props) => {
                     {timer}s
                 </div>
 
-                 {props.timerActive ? <div className = "wpm">
-                
-                    Correct Entries: {props.index} <br/>
-                    Your WPM: {grossWPM(props.index, staticCountdown-countdown)}
-                </div> : null }
-                
                 <div className="right-elements">
-                    <ToggleSwitch 
-                        countdownToggleChecked={props.countdownToggleChecked}
-                        onToggle={props.setCountdownToggleChecked}
-                    />
                     <div className="timer-select">
                         <div onClick={() => setCount(15)} style={staticCountdown === 15 ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : null} className="time-button">
                             15
@@ -103,20 +93,20 @@ const TypingTest = (props) => {
             </div>
 
             <div className="word-base">
-                
+
                 {props.timerActive ? null : <div className="start-signal-wrapper">
-                
-                    Correct Entries: {numEntries} <br/>
-                    Your WPM: {grossWPM()} <br/> <br/>
-                    <div className = "start-signal">
+
+                    Correct Entries: {numEntries} <br />
+                    Your WPM: {grossWPM()} <br /> <br />
+                    <div className="start-signal">
                         Press Enter To Start!
                     </div>
-                    </div>}
-                {props.timerActive && props.inCountdown && props.countdownToggleChecked ? 
-                <div className="countdown">
-                    {countdown}
-                    </div> 
-                : null}
+                </div>}
+                {props.timerActive && props.inCountdown && props.countdownToggleChecked ?
+                    <div className="countdown">
+                        {countdown}
+                    </div>
+                    : null}
                 <div className="test-text">
                     {props.words.split("").map(function (char, idx) {
                         return (
