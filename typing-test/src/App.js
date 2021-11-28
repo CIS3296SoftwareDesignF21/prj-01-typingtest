@@ -22,22 +22,28 @@ function App() {
   const [testing, setTest] = useState("");
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [accountInfo, setAccountInfo] = useState()
 
-  function onLogin(account){
+  const [accountInfo, setAccountInfo] = useState([
+    {account_id: ""},
+    {display_name: ""},
+    {user_email: ""},
+    {password: ""},
+    {photo: ""}])
+
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const onLogin = async (account) => {
+    await(delay(2000));
 
     // Need to fix async issue when fetching from api
     // need to figure out way to wait for response before this function call
-
-    // if(account.account_id != -1){
+    console.log(account);
+    if(account.account_id != -1){
       setAccountInfo(account);
       setLoggedIn(true);
-    // }else{
-    //   alert('Account does not exist');
-    // }
+    }else{
+      alert('Account does not exist');
+    }
 
-    console.log("1: " + account);
-    console.log("2: " + accountInfo);
   }
 
   function logout(){
