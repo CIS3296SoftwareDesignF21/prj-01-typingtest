@@ -80,11 +80,8 @@ The user will open the app which uses electron and a web server to run the JS co
 The user will create an account, there will be a login/register page that will be connected to the database. Upon valid credentials, the users account will be added to the database. The user will then login to the application using correct entires found by the database. After login they will go to their account page where they will update their entries. DisplayName, Email, photo, password. They will then be able to view the scoreboard including their top score as well as other users top scores, which will be retrieved from the database.
 ![UML Diagram](UML_Sequence_2-Account.png)
 
-## User Personas
+## [User Personas](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/UserPersonas/UserPersonas.md)
 
-![Learner](User_Persona-Learner.png)
-![Upgrader](User_Persona-Upgrader.png)
-![Play Tester](User_Persona-Playtester.png)
 
 
 ## Releases
