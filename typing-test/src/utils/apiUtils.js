@@ -1,57 +1,61 @@
 const request = require('postman-request');
-
-var options = {
-};
+const rp = require('request-promise');
 
 var account = {
     account_id: -1,
-    display_name: '',
-    user_email: '',
-    password: '',
-    photo: -1
-}
+    display_name: "",
+    user_email: "",
+    password: "",
+    photo: -1,
+    avg_wpm: -1,
+    top_wpm: -1,
+    letter_misses: "",
+    total_words: -1,
+    total_time: -1
+};
 
-function getAccInfo(error, response, body) {
-
-    if (!error && response.statusCode == 200) {
-        const info = JSON.parse(body);
-        console.log(info);
-
-        if (info !== []) {
-            console.log("STATUS: Login Success");
-            
-            account.account_id = info[0].account_id;
-            account.display_name = info[0].display_name;
-            account.user_email = info[0].user_email;
-            account.password = info[0].password;
-            account.photo = info[0].photo;
-        }
-    } else {
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        console.log('error:', error); // Print the error if one occurred
-        account.account_id = -1;
-    }
-}
 
 export function callLogin(username, password) {
+    account = {
+        account_id: -1,
+        display_name: "",
+        user_email: "",
+        password: "",
+        photo: -1
+    };
 
-    options.url = 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/login?email='
+    var options = {
+        url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/login?email='
         + username
-        + '&pw=' + password;
+        + '&pw=' + password
+    };
 
-    request(options, getAccInfo);
+    rp(options)
+        .then(function(acc){
+            console.log(acc);
+            if(acc != "Invalid Login Credentials"){
+                var info = JSON.parse(acc);
+                account.account_id = info[0].account_id;
+                account.display_name = info[0].display_name;
+                account.user_email = info[0].user_email;
+                account.password = info[0].password;
+                account.photo = info[0].photo;
+                console.log(account);
+            }
+        })
+        .finally(function(){
+            console.log(account);
+        })
+        .catch(function (err) {
+    
+    });
+    return account;
 
-    console.log(account)
-
-    return JSON.stringify(account);
 }
 
 export function callRegisterAccount(email, username, password) {
-
-    console.log(email, username, password);
-
-    // needs to be changed with register api link
-    options = {
+    var options = {
+        method: 'POST',
         headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
         url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/signup',
         body: JSON.stringify( {
@@ -60,11 +64,85 @@ export function callRegisterAccount(email, username, password) {
         "pw": password
         })
     };
-    // ------------------------------------------
 
-    console.log(options);
+    rp(options)
+        .then(function(acc){
+            console.log(acc);
+            var info = JSON.parse(acc);
+            account.account_id = info[0].account_id;
+            account.display_name = info[0].display_name;
+            account.user_email = info[0].user_email;
+            account.password = info[0].password;
+            account.photo = info[0].photo;
+            console.log(account);
+        })
+        .finally(function(){
+            console.log(account);
+        })
+        .catch(function (err) {
 
-    request.post(options, getAccInfo);
+    });
+    return account;
+}
 
+export function updateStats(avgWPM, topWPM, letterMisses, totalWords, totalTime, id) {
+    var options = {
+        method: 'POST',
+        headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
+        url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/updatestats',
+        body: JSON.stringify( {
+            "accID": id,
+            "avgWPM": avgWPM,
+            "topWPM": topWPM,
+            "letterMisses": letterMisses,
+            "totalWords": totalWords,
+            "totalTime": totalTime
+        })
+    };
+
+    rp(options)
+        .then(function(res){
+            console.log(res);
+            // var info = JSON.parse(acc);
+            // account.account_id = info[0].account_id;
+            // account.display_name = info[0].display_name;
+            // account.user_email = info[0].user_email;
+            // account.password = info[0].password;
+            // account.photo = info[0].photo;
+            // console.log(account);
+        })
+        .finally(function(){
+            console.log(account);
+        })
+        .catch(function (err) {
+
+    });
+    return account;
+}
+
+export function getStats(id) {
+
+    var options = {
+        url: 'https://9x38qblue2.execute-api.us-east-1.amazonaws.com/dev/getstatbyid?accId=' + id
+    };
+
+    rp(options)
+        .then(function(acc){
+            console.log(acc);
+            var info = JSON.parse(acc);
+            account.avg_wpm = info[0].avg_wpm;
+            account.top_wpm = info[0].top_wpm;
+            account.letter_misses = info[0].letter_misses;
+            account.total_words = info[0].total_words;
+            account.total_time = info[0].total_time;
+            console.log(account);
+        
+        })
+        .finally(function(){
+            console.log(account);
+        })
+        .catch(function (err) {
+    
+    });
     return account;
 }
