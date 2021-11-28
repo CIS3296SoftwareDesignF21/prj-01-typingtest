@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { words } from "./words.json";
+import React, { useState, useEffect } from 'react';
 import TypingTest from './components/TypingTest';
 import SignInModal from './components/SignInModal';
 import TitleBar from './components/TitleBar';
@@ -104,7 +103,7 @@ function App() {
         />
         break;
       case 1:
-        return (loggedIn ? <Account /> : <OfflineAccount />);
+        return (loggedIn ? <Account accountInfo={accountInfo} /> : <OfflineAccount />);
         break;
       case 2:
         return (<Training />)
