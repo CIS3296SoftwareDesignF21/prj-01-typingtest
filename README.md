@@ -1,5 +1,11 @@
 # Typing Test
 
+### [Project Proposal](https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14)
+### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
+### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week1.md)
+### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week2.md)
+### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week3.md)
+
 ## Project Description
 
 The goal of the Typing Test project is to test the user and challenge their typing skills. 
@@ -17,6 +23,10 @@ Our vision for this project is to achieve a feature-rich program with an elegant
 Because this project is a typing test, the team arranged what we thought were the best aspects from other online typing tests into the ultimate typing test program.
 By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
 To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
+
+## Why Use?
+
+For any user who would like to improve their typing skills. (Typing Test) is a typing simulator that allows users to learn pratical typing skills, improve their words per minute, and gain good typing habits, all while having fun. Unlike TypeRacer, our product achieves a feature-rich program with an elegant user interface that is utilized as an executable desktop application. 
 
 ## Client Install
 
@@ -63,11 +73,6 @@ code .
 cd prj-01-typingtest/typing-test
 ./Open.bat
 ```
-
-
-## Vision Statement
-
-For any user who would like to improve their typing skills. (Typing Test) is a typing simulator that allows users to learn pratical typing skills, improve their words per minute, and gain good typing habits, all while having fun. Unlike TypeRacer, our product achieves a feature-rich program with an elegant user interface that is utilized as an executable desktop application. 
 
 ## [UML](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/UML/UML.md)
 
