@@ -1,10 +1,4 @@
 # Typing Test
-### [Project Proposal](https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14)
-### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
-### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week1.md)
-### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week2.md)
-### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/Week3.md)
-
 
 ## Project Description
 
@@ -24,14 +18,16 @@ Because this project is a typing test, the team arranged what we thought were th
 By using React, we will make use of modern web UX design principles and deploy it as a desktop application with the help of [Electron.](https://www.electronjs.org)
 To manage the database, we plan to take advantage of AWS AmazonRDS to host MySQL.
 
-# Client Install
-- [Download Latest Release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip) 
+## Client Install
+
+- [Download Latest Release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip)
+- Extract .zip file 
 - Run typing-test.exe
 
 ## Developer Install
 
 - [Install Node JS 16.13.0 LTS](https://nodejs.org/en/)(External Site)
-- Download Dependencies ([List](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/network/dependencies))
+- Download Dependencies ([More Details](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/network/dependencies))
 ```
 npm install -g electron
 npm install electron-squirrel-startup --save
@@ -52,7 +48,17 @@ npm install random-words
 ```
 git clone https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest
 ```
-## Run
+## Open & Run 
+- Recommemded IDE: [Visual Studio Code](https://code.visualstudio.com/download)
+### Open Source Code
+- Navigate to Cloned Repository Direcctory
+- Utilize VS Code 
+```
+cd prj-01-typingtest/typing-test
+code .
+```
+### Run
+-Run .bat file to connect to server and open electron app
 ```
 cd prj-01-typingtest/typing-test
 ./Open.bat
