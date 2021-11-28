@@ -49,6 +49,10 @@ function App() {
   var randWordsFunc = require('random-words');          //Must require random-words
 
 
+  function newWords(){
+    setRandomWords(randWordsFunc({exactly:45, join:' '}));
+  }
+
   const onKeyPress = (event) => {
 
     switch (event.key) {
@@ -91,6 +95,7 @@ function App() {
           index={index}
           countdownToggleChecked={countdownToggleChecked}
           setCountdownToggleChecked={setCountdownToggleChecked}
+          newWords={newWords}
         />
         break;
       case 1:
@@ -113,7 +118,7 @@ function App() {
 
   useEffect(() => {   //using another useEffect so random words does not refresh everytime.
 
-    setRandomWords(randWordsFunc({exactly:45, join:' '}));  //Setting how many words given for the test right here.
+    newWords();  //Setting how many words given for the test right here.
 
   }, [])
 

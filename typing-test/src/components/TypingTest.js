@@ -16,6 +16,7 @@ const TypingTest = (props) => {
         props.setIndex(0);
         setTimer(staticCountdown);
         setCountdown(1);
+        props.newWords();
     }
 
     function useInterval(callback, delay) {
@@ -59,12 +60,11 @@ const TypingTest = (props) => {
         } else {
             setTimer(timer => timer - 1);
             setNumEntries(props.index);
-
         }
     }, props.timerActive ? 1000 : null);
 
     const grossWPM = () => {
-        return ((numEntries / 5) / WPMTime) * 60;
+        return (((numEntries / 5) / WPMTime) * 60).toFixed(2);
     };
 
     return (
