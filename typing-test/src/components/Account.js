@@ -5,24 +5,37 @@ import StatKeyboard from './StatKeyboard'
 
 const Account = ({ accountInfo }) => {
 
-    const sortObject = obj => {
-        const sortingArr = Object.keys(obj).map(el => {
-            return obj[el];
-        });
+    // const sortObject = obj => {
+    //     const sortingArr = Object.keys(obj).map(el => {
+    //         return obj[el];
+    //     });
 
-        var result = [];
+    //     var result = [];
 
-        for (var i in obj)
-            result.push([i, obj[i]]);
+    //     for (var i in obj)
+    //         result.push([i, obj[i]]);
 
-        console.log(sortingArr, result);
+    //     console.log(sortingArr, result);
 
-        result.sort(sorter);
+    //     result.sort(sorter);
 
-        return result;
-    };
+    //     return result;
+    // };
 
-    console.log(sortObject(JSON.parse(accountInfo.letter_misses)));
+    // const sortObject = obj => {
+
+    //     var result = {};
+    //     // for (var i in obj)
+    //     //     result.push([i, obj[i]]);
+    //     Object.keys(obj).sort().forEach(a=>result[a]=obj[a])
+    //     console.log(result);
+    //     return result;
+    // };
+
+    var jObj = JSON.parse(accountInfo.letter_misses);
+    console.log(Object.entries(jObj).sort((a,b) => b[1]-a[1]));
+
+    var sortedMisses = Object.entries(jObj).sort((a,b) => b[1]-a[1]);
 
     return (
         <div>
@@ -37,8 +50,8 @@ const Account = ({ accountInfo }) => {
                 </div>
                 <StatKeyboard accountInfo={accountInfo} />
                 <div className="stats-wing">
-                    <SingleStatDisplay title="Most Missed" data="" />
-                    <SingleStatDisplay title="Least Missed" data="Q" />
+                    <SingleStatDisplay title="Most Missed" data={sortedMisses[0][0].toUpperCase()} />
+                    <SingleStatDisplay title="Least Missed" data={sortedMisses[25][0].toUpperCase()} />
                 </div>
             </div>
         </div>
