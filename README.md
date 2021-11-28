@@ -36,7 +36,7 @@ For any user who would like to improve their typing skills. (Typing Test) is a t
 
 ## Developer Install
 
-- [Install Node JS 16.13.0 LTS](https://nodejs.org/en/)(External Site)
+- Install Node JS 16.13.0 LTS([External Site](https://nodejs.org/en/))
 - Download Dependencies ([More Details](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/network/dependencies))
 ```
 npm install -g electron
