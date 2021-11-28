@@ -41,6 +41,7 @@ export function callLogin(username, password) {
                 account.password = info[0].password;
                 account.photo = info[0].photo;
                 console.log(account);
+                getStats(account.account_id);
             }
         })
         .finally(function(){
