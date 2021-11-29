@@ -9,6 +9,7 @@ import OfflineAccount from './components/OfflineAccount';
 import Training from './components/Training';
 import Settings from './components/Settings.js';
 import LoadingSpinner from './components/LoadingSpinner';
+import * as api from './utils/apiUtils.js'
 
 function App() {
 
@@ -56,13 +57,62 @@ function App() {
   function newWords() {
     setRandomWords(randWordsFunc({ exactly: 45, join: ' ' }));
   }
-//INCREMENTS MISSED LETTER AND UPDATES ACCINFO
-  function incrementMissed(letter){
+  //INCREMENTS MISSED LETTER AND UPDATES ACCINFO
+  function incrementMissed(letter) {
     var jObj = JSON.parse(accountInfo.letter_misses);
-    jObj[letter] = jObj[letter]+1;
-    setAccountInfo({ ...accountInfo, letter_misses: JSON.stringify(jObj)});
+    jObj[letter] = jObj[letter] + 1;
+    setAccountInfo({ ...accountInfo, letter_misses: JSON.stringify(jObj) });
 
   }
+
+  async function updateApiStats(avgWPM, wpm) {
+
+    await delay(5000);
+
+    console.log("Before Update Stats",
+      avgWPM,
+      wpm,
+      accountInfo.letter_misses,
+      accountInfo.total_words,
+      accountInfo.total_time,
+      accountInfo.account_id)
+
+    api.updateStats(
+      avgWPM,
+      wpm,
+      accountInfo.letter_misses,
+      accountInfo.total_words,
+      accountInfo.total_time,
+      accountInfo.account_id)
+
+    console.log("yup");
+    console.log(accountInfo);
+
+  }
+
+
+
+  const updateAccInfo = (numEntries, WPMTime, grossWPM) => {
+    if (loggedIn) {
+
+      var totWords = accountInfo.total_words + (numEntries / 5);
+      var totTime = accountInfo.total_time + WPMTime;
+      console.log(totTime, totWords)
+      setAccountInfo({ ...accountInfo, total_words: 100, total_time: 100 });
+
+      if ((grossWPM > accountInfo.top_wpm) || (accountInfo.top_wpm == null)) {
+        setAccountInfo({ ...accountInfo, top_wpm: grossWPM });
+      } else {
+        grossWPM = accountInfo.top_wpm;
+      }
+
+      var avgWPM = (totWords / totTime) * 60;
+      setAccountInfo({ ...accountInfo, avg_wpm: avgWPM });
+
+      updateApiStats(avgWPM, grossWPM);
+    }
+  }
+
   const onKeyPress = (event) => {
 
     switch (event.key) {
@@ -81,12 +131,12 @@ function App() {
       case "Escape":
         console.log("correct");
         break;
-//EDITED TO MAKE LETTER MISSES UPDATE
+      //EDITED TO MAKE LETTER MISSES UPDATE
       default:
-        if(timerActive && !inCountdown){
-          if (event.key === randomWords[index]) { 
+        if (timerActive && !inCountdown) {
+          if (event.key === randomWords[index]) {
             setIndex((index) => index + 1);
-          }else if (event.key != randomWords[index] && loggedIn) {
+          } else if (event.key != randomWords[index] && loggedIn) {
             incrementMissed(randomWords[index]);
             console.log(randomWords[index]);
             console.log(accountInfo.letter_misses);
@@ -113,8 +163,9 @@ function App() {
           setCountdownToggleChecked={setCountdownToggleChecked}
           newWords={newWords}
           accountInfo={accountInfo}
-          setAccountInfo = {setAccountInfo}
-          loggedIn = {loggedIn}
+          setAccountInfo={setAccountInfo}
+          loggedIn={loggedIn}
+          updateAccInfo={updateAccInfo}
         />
         break;
       case 1:
