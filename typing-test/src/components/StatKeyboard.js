@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import '../stylesheets/StatKeyboard.css'
 import Image from "../assets/keyboard_shell.png"
+import MissedKey from './MissedKey';
 
 const StatKeyboard = ({ letter_misses }) => {
 
@@ -21,8 +22,6 @@ const StatKeyboard = ({ letter_misses }) => {
     const getColor = (key) => {
 
         const ratio = map[key] / max;
-
-        console.log(ratio, key, max);
 
         if (ratio === 1) {
             return '#f25c54';

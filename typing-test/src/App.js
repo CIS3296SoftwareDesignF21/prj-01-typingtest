@@ -9,7 +9,6 @@ import OfflineAccount from './components/OfflineAccount';
 import Training from './components/Training';
 import Settings from './components/Settings.js';
 import LoadingSpinner from './components/LoadingSpinner';
-import { join } from 'lodash';
 
 function App() {
 
@@ -87,7 +86,7 @@ function App() {
         if(timerActive && !inCountdown){
           if (event.key === randomWords[index]) { 
             setIndex((index) => index + 1);
-          }else if (event.key != randomWords[index]) {
+          }else if (event.key != randomWords[index] && loggedIn) {
             incrementMissed(randomWords[index]);
             console.log(randomWords[index]);
             console.log(accountInfo.letter_misses);
@@ -142,10 +141,6 @@ function App() {
 
   }, [])
 
-  useEffect(()=>{
-    console.log(accountInfo);
-  },[accountInfo])
-  
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
 

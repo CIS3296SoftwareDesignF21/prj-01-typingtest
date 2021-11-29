@@ -8,6 +8,11 @@
     height: fit-content;
 }
 
+.missed-key{
+    position: fixed;
+    z-index: 100;
+}
+
 .keyboard-img{
     width: 100%;
     position: relative;

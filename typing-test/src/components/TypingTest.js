@@ -1,8 +1,6 @@
-import { property } from "lodash";
-import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from "react";
 import "../stylesheets/TypingTest.css"
-import ToggleSwitch from "./ToggleSwitch";
+import * as api from '../utils/apiUtils.js'
 
 const TypingTest = (props) => {
     const [staticCountdown, setStaticCountdown] = useState(15);
@@ -10,19 +8,71 @@ const TypingTest = (props) => {
     const [countdown, setCountdown] = useState(1);
     const [numEntries, setNumEntries] = useState(0);
     const [WPMTime, setWPMTime] = useState(1);
+    const [triggerUpdate, setTriggerUpdate] = useState(0);
+    const [wpm, setWpm] = useState(0);
+    const [avgWPM, setAvgWPM] = useState(0);
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    useEffect(() => {
+        async function updateApiStats() {
+
+            await delay(5000);
+
+            console.log("Before Update Stats",  
+                avgWPM,
+                wpm,
+                props.accountInfo.letter_misses,
+                props.accountInfo.total_words,
+                props.accountInfo.total_time,
+                props.accountInfo.account_id)
+
+            api.updateStats(
+                avgWPM,
+                wpm,
+                props.accountInfo.letter_misses,
+                props.accountInfo.total_words,
+                props.accountInfo.total_time,
+                props.accountInfo.account_id)
+
+            console.log("yup");
+            console.log(props.accountInfo);
+        }
+
+        updateApiStats();
+
+    }, [triggerUpdate]);
+
+    useEffect(() => {
+        console.log("accountinfo updated",props.accountInfo);
+    },[props.accountInfo]);
+
+
 
     function reset() {
-        if(props.loggedIn){
-            console.log("-----1-----");
-            var x = props.accountInfo.total_words+(numEntries/5);
-            var y = props.accountInfo.total_time+WPMTime;
-            props.setAccountInfo({...props.accountInfo, total_words: x, total_time: y});
-            console.log("-----2-----");
-            var wpm = grossWPM();
-            if(wpm > props.accountInfo.top_wpm){
-                props.setAccountInfo({...props.accountInfo, top_wpm: wpm});
+        if (props.loggedIn) {
+
+            var totWords = props.accountInfo.total_words + (numEntries / 5);
+            var totTime = props.accountInfo.total_time + WPMTime;
+            console.log(totTime, totWords)
+            props.setAccountInfo({ ...props.accountInfo, total_words: 100, total_time: 100 });
+
+            var temp_wpm = grossWPM();
+            setWpm(temp_wpm);
+
+            if ((temp_wpm > props.accountInfo.top_wpm) || (props.accountInfo.top_wpm == null)) {
+                props.setAccountInfo({ ...props.accountInfo, top_wpm: temp_wpm });
+            } else {
+                temp_wpm = props.accountInfo.top_wpm;
             }
-            console.log(props.accountInfo);
+
+            var temp_avgWPM = (totWords / totTime) * 60;
+            props.setAccountInfo({ ...props.accountInfo, avg_wpm: temp_avgWPM });
+
+            setAvgWPM(temp_avgWPM);
+
+            setTriggerUpdate(avgWPM); // Value does not matter
+
         }
         props.setTimerActive(false);
         props.setIndex(0);
@@ -77,7 +127,7 @@ const TypingTest = (props) => {
 
     const grossWPM = () => {
         var words = (numEntries / 5);
-        var wpm = (( words / WPMTime) * 60).toFixed(2);
+        var wpm = ((words / WPMTime) * 60).toFixed(2);
         return wpm;
     };
 
@@ -118,7 +168,7 @@ const TypingTest = (props) => {
                 </div>}
                 {props.timerActive && props.inCountdown && props.countdownToggleChecked ?
                     <div className="countdown">
-                        {countdown}
+                        Get Ready!
                     </div>
                     : null}
                 <div className="test-text">
