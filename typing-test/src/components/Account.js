@@ -45,10 +45,10 @@ const Account = ({ accountInfo }) => {
             <div className="stat-container">
 
                 <div className="stats-wing" >
-                    <SingleStatDisplay title="Top WPM" data={accountInfo.top_wpm == null ? 0 : accountInfo.top_wpm} />
-                    <SingleStatDisplay title="Avg WPM" data={accountInfo.avg_wpm == null ? 0 : accountInfo.avg_wpm} />
+                    <SingleStatDisplay title="Top WPM" data={accountInfo.top_wpm == null ? 0 : accountInfo.top_wpm.toFixed(2)} />
+                    <SingleStatDisplay title="Avg WPM" data={accountInfo.avg_wpm == null ? 0 : accountInfo.avg_wpm.toFixed(2)} />
                 </div>
-                <StatKeyboard accountInfo={accountInfo} />
+                <StatKeyboard letter_misses={accountInfo.letter_misses} />
                 <div className="stats-wing">
                     <SingleStatDisplay title="Most Missed" data={sortedMisses[0][0].toUpperCase()} />
                     <SingleStatDisplay title="Least Missed" data={sortedMisses[25][0].toUpperCase()} />

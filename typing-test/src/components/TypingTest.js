@@ -1,8 +1,6 @@
-import { property } from "lodash";
-import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from "react";
 import "../stylesheets/TypingTest.css"
-import ToggleSwitch from "./ToggleSwitch";
+import * as api from '../utils/apiUtils.js'
 
 const TypingTest = (props) => {
     const [staticCountdown, setStaticCountdown] = useState(15);
@@ -11,19 +9,11 @@ const TypingTest = (props) => {
     const [numEntries, setNumEntries] = useState(0);
     const [WPMTime, setWPMTime] = useState(1);
 
+    useEffect(() => {
+        console.log("accountinfo updated", props.accountInfo);
+    }, [props.accountInfo]);
+
     function reset() {
-        if(props.loggedIn){
-            console.log("-----1-----");
-            var x = props.accountInfo.total_words+(numEntries/5);
-            var y = props.accountInfo.total_time+WPMTime;
-            props.setAccountInfo({...props.accountInfo, total_words: x, total_time: y});
-            console.log("-----2-----");
-            var wpm = grossWPM();
-            if(wpm > props.accountInfo.top_wpm){
-                props.setAccountInfo({...props.accountInfo, top_wpm: wpm});
-            }
-            console.log(props.accountInfo);
-        }
         props.setTimerActive(false);
         props.setIndex(0);
         setTimer(staticCountdown);
@@ -60,7 +50,9 @@ const TypingTest = (props) => {
 
     useInterval(() => {
         if (!props.inCountdown && timer === 0) {
+            props.updateAccInfo(numEntries, WPMTime, grossWPM());
             reset();
+
         } else if (props.inCountdown) {
             if (countdown === 1) {
                 props.setInCountdown(false);
@@ -77,7 +69,7 @@ const TypingTest = (props) => {
 
     const grossWPM = () => {
         var words = (numEntries / 5);
-        var wpm = (( words / WPMTime) * 60).toFixed(2);
+        var wpm = ((words / WPMTime) * 60).toFixed(2);
         return wpm;
     };
 
@@ -118,7 +110,7 @@ const TypingTest = (props) => {
                 </div>}
                 {props.timerActive && props.inCountdown && props.countdownToggleChecked ?
                     <div className="countdown">
-                        {countdown}
+                        Get Ready!
                     </div>
                     : null}
                 <div className="test-text">
