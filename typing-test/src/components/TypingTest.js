@@ -1,10 +1,10 @@
+import { property } from "lodash";
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import styled from "styled-components";
 import "../stylesheets/TypingTest.css"
 import ToggleSwitch from "./ToggleSwitch";
 
 const TypingTest = (props) => {
-
     const [staticCountdown, setStaticCountdown] = useState(15);
     const [timer, setTimer] = useState(15);
     const [countdown, setCountdown] = useState(1);
@@ -12,6 +12,18 @@ const TypingTest = (props) => {
     const [WPMTime, setWPMTime] = useState(1);
 
     function reset() {
+        if(props.loggedIn){
+            console.log("-----1-----");
+            var x = props.accountInfo.total_words+(numEntries/5);
+            var y = props.accountInfo.total_time+WPMTime;
+            props.setAccountInfo({...props.accountInfo, total_words: x, total_time: y});
+            console.log("-----2-----");
+            var wpm = grossWPM();
+            if(wpm > props.accountInfo.top_wpm){
+                props.setAccountInfo({...props.accountInfo, top_wpm: wpm});
+            }
+            console.log(props.accountInfo);
+        }
         props.setTimerActive(false);
         props.setIndex(0);
         setTimer(staticCountdown);
@@ -64,7 +76,9 @@ const TypingTest = (props) => {
     }, props.timerActive ? 1000 : null);
 
     const grossWPM = () => {
-        return (((numEntries / 5) / WPMTime) * 60).toFixed(2);
+        var words = (numEntries / 5);
+        var wpm = (( words / WPMTime) * 60).toFixed(2);
+        return wpm;
     };
 
     return (

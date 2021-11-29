@@ -55,6 +55,13 @@ export function callLogin(username, password) {
 }
 
 export function callRegisterAccount(email, username, password) {
+    account = {
+        account_id: -1,
+        display_name: "",
+        user_email: "",
+        password: "",
+        photo: -1
+    };
     var options = {
         method: 'POST',
         headers: {'Content-Type' : 'application/x-www-form-urlencoded'},

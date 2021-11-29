@@ -113,6 +113,9 @@ function App() {
           countdownToggleChecked={countdownToggleChecked}
           setCountdownToggleChecked={setCountdownToggleChecked}
           newWords={newWords}
+          accountInfo={accountInfo}
+          setAccountInfo = {setAccountInfo}
+          loggedIn = {loggedIn}
         />
         break;
       case 1:
@@ -139,14 +142,17 @@ function App() {
 
   }, [])
 
-
+  useEffect(()=>{
+    console.log(accountInfo);
+  },[accountInfo])
+  
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
 
     return () => {
       document.removeEventListener('keydown', onKeyPress);
     };
-  }, [accountInfo.letter_misses, index, timerActive, inCountdown, page])
+  }, [accountInfo, index, timerActive, inCountdown, page])
 
   return (
     <div className="App">
