@@ -89,6 +89,7 @@ function App() {
             setIndex((index) => index + 1);
           }else if (event.key != randomWords[index]) {
             incrementMissed(randomWords[index]);
+            console.log(randomWords[index]);
             console.log(accountInfo.letter_misses);
           }
         }
