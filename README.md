@@ -90,3 +90,5 @@ cd prj-01-typingtest/typing-test
 
 - [0.3.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip)
 
+- [1.0.0-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/tag/v1.0.0)
+
