@@ -2,9 +2,11 @@
 
 ### [Project Proposal](https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14)
 ### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
-### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week1.md)
-### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week2.md)
-### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week3.md)
+### [Trello Board](https://trello.com/b/ZA8xvBef/typing-test)
+### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week1.md)
+### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week2.md)
+### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week3.md)
+### [Week 4 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week4.md)
 
 ## Project Description
 
@@ -88,4 +90,6 @@ cd prj-01-typingtest/typing-test
 - [0.2.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.2.0-pre-release/typing-test-win32-x64.zip)
 
 - [0.3.0-pre-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/download/v0.3.0-pre-release/typing-test-win32-x64.zip)
+
+- [1.0.0-release](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/releases/tag/v1.0.0)
 

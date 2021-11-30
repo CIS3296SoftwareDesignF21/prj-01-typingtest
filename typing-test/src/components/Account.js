@@ -5,33 +5,6 @@ import StatKeyboard from './StatKeyboard'
 
 const Account = ({ accountInfo }) => {
 
-    // const sortObject = obj => {
-    //     const sortingArr = Object.keys(obj).map(el => {
-    //         return obj[el];
-    //     });
-
-    //     var result = [];
-
-    //     for (var i in obj)
-    //         result.push([i, obj[i]]);
-
-    //     console.log(sortingArr, result);
-
-    //     result.sort(sorter);
-
-    //     return result;
-    // };
-
-    // const sortObject = obj => {
-
-    //     var result = {};
-    //     // for (var i in obj)
-    //     //     result.push([i, obj[i]]);
-    //     Object.keys(obj).sort().forEach(a=>result[a]=obj[a])
-    //     console.log(result);
-    //     return result;
-    // };
-
     var jObj = JSON.parse(accountInfo.letter_misses);
     console.log(Object.entries(jObj).sort((a,b) => b[1]-a[1]));
 

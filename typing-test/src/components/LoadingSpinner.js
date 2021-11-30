@@ -12,7 +12,7 @@ const LoadingSpinner = () => {
                     color="#50E3C2"
                     height={200}
                     width={200}
-                    timeout={3000} //3 secs
+                    timeout={4000} //4 secs
                 />
             </div>
         </div>
