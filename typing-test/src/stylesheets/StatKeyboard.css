@@ -26,6 +26,17 @@
     z-index: 1;
 }
 
+.key1{
+    position: absolute;
+    height: 15%;
+    width: 6%;
+    z-index: 100;
+}
+
+.key1:hover{
+    cursor: pointer;
+}
+
 #q{
     left: 13.25%;
     top: 27.5%;

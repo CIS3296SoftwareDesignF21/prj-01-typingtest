@@ -120,7 +120,7 @@ export function updateStats(avgWPM, topWPM, letterMisses, totalWords, totalTime,
             // console.log(account);
         })
         .finally(function(){
-            console.log(account);
+            console.log(options);
         })
         .catch(function (err) {
 

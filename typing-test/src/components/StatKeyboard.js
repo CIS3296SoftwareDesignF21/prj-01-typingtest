@@ -70,6 +70,32 @@ const StatKeyboard = ({ letter_misses }) => {
             <div style={{ backgroundColor: getColor("n") }} className="key" id="n" />
             <div style={{ backgroundColor: getColor("m") }} className="key" id="m" />
             <img className="keyboard-img" src={Image} />
+            <div className="key1" id="q" />
+            <div className="key1" id="w" />
+            <div className="key1" id="e" />
+            <div className="key1" id="r" />
+            <div className="key1" id="t" />
+            <div className="key1" id="y" />
+            <div className="key1" id="u" />
+            <div className="key1" id="i" />
+            <div className="key1" id="o" />
+            <div className="key1" id="p" />
+            <div className="key1" id="a" />
+            <div className="key1" id="s" />
+            <div className="key1" id="d" />
+            <div className="key1" id="f" />
+            <div className="key1" id="g" />
+            <div className="key1" id="h" />
+            <div className="key1" id="j" />
+            <div className="key1" id="k" />
+            <div className="key1" id="l" />
+            <div className="key1" id="z" />
+            <div className="key1" id="x" />
+            <div className="key1" id="c" />
+            <div className="key1" id="v" />
+            <div className="key1" id="m" />
+            <div className="key1" id="b" />
+            <div className="key1" id="n" />
         </div>
     )
 }

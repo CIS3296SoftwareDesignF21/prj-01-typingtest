@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import TypingTest from './components/TypingTest';
 import SignInModal from './components/SignInModal';
 import TitleBar from './components/TitleBar';
@@ -21,9 +21,10 @@ function App() {
   const [inCountdown, setInCountdown] = useState(false)
   const [countdownToggleChecked, setCountdownToggleChecked] = useState(true);
   const [loading, setLoading] = useState(false);
-
+  const [timer, setTimer] = useState(15);
+  const [numEntries, setNumEntries] = useState(0);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [WPMTime, setWPMTime] = useState(1);
   const [accountInfo, setAccountInfo] = useState({})
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -31,7 +32,7 @@ function App() {
 
     setLoading(true);
 
-    await (delay(2000));
+    await (delay(4000));
 
     setLoading(false);
 
@@ -57,6 +58,7 @@ function App() {
   function newWords() {
     setRandomWords(randWordsFunc({ exactly: 45, join: ' ' }));
   }
+
   //INCREMENTS MISSED LETTER AND UPDATES ACCINFO
   function incrementMissed(letter) {
     var jObj = JSON.parse(accountInfo.letter_misses);
@@ -65,42 +67,33 @@ function App() {
 
   }
 
-  async function updateApiStats(avgWPM, wpm) {
-
-    await delay(5000);
+  async function updateApiStats(avgWPM, topWpm, total_words, total_time) {
 
     console.log("Before Update Stats",
       avgWPM,
-      wpm,
-      accountInfo.letter_misses,
-      accountInfo.total_words,
-      accountInfo.total_time,
-      accountInfo.account_id)
+      topWpm,
+      accountInfo)
 
     api.updateStats(
       avgWPM,
-      wpm,
+      topWpm,
       accountInfo.letter_misses,
-      accountInfo.total_words,
-      accountInfo.total_time,
+      total_words,
+      total_time,
       accountInfo.account_id)
-
-    console.log("yup");
-    console.log(accountInfo);
-
   }
 
-
-
   const updateAccInfo = (numEntries, WPMTime, grossWPM) => {
+
     if (loggedIn) {
 
       var totWords = accountInfo.total_words + (numEntries / 5);
       var totTime = accountInfo.total_time + WPMTime;
-      console.log(totTime, totWords)
-      setAccountInfo({ ...accountInfo, total_words: 100, total_time: 100 });
+
+      setAccountInfo({ ...accountInfo, total_words: totWords, total_time: totTime });
 
       if ((grossWPM > accountInfo.top_wpm) || (accountInfo.top_wpm == null)) {
+        console.log("Gross wpm:", grossWPM);
         setAccountInfo({ ...accountInfo, top_wpm: grossWPM });
       } else {
         grossWPM = accountInfo.top_wpm;
@@ -109,9 +102,17 @@ function App() {
       var avgWPM = (totWords / totTime) * 60;
       setAccountInfo({ ...accountInfo, avg_wpm: avgWPM });
 
-      updateApiStats(avgWPM, grossWPM);
+      console.log(avgWPM, totTime, totWords);
+
+      updateApiStats(avgWPM, grossWPM, totWords, totTime);
     }
   }
+
+  const grossWPM = () => {
+    var words = (numEntries / 5);
+    var wpm = ((words / WPMTime) * 60).toFixed(2);
+    return wpm;
+  };
 
   const onKeyPress = (event) => {
 
@@ -148,7 +149,7 @@ function App() {
 
 
   const pageSwitch = (param) => {
-    console.log(param)
+
     switch (param) {
       case 0:
         return <TypingTest
@@ -166,6 +167,13 @@ function App() {
           setAccountInfo={setAccountInfo}
           loggedIn={loggedIn}
           updateAccInfo={updateAccInfo}
+          timer={timer}
+          setTimer={setTimer}
+          numEntries={numEntries}
+          setNumEntries={setNumEntries}
+          WPMTime={WPMTime}
+          setWPMTime={setWPMTime}
+          grossWPM={grossWPM}
         />
         break;
       case 1:
@@ -194,6 +202,12 @@ function App() {
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
+
+    if (timer === 0 && !timerActive && loggedIn) {
+      console.log("Hey this works");
+
+      updateAccInfo(numEntries, WPMTime, grossWPM());
+    }
 
     return () => {
       document.removeEventListener('keydown', onKeyPress);
