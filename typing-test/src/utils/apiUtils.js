@@ -82,6 +82,7 @@ export function callRegisterAccount(email, username, password) {
             account.user_email = info[0].user_email;
             account.password = info[0].password;
             account.photo = info[0].photo;
+            getStats(account.account_id);
             console.log(account);
         })
         .finally(function(){
