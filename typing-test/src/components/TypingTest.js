@@ -1,20 +1,15 @@
-import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from "react";
 import "../stylesheets/TypingTest.css"
-import ToggleSwitch from "./ToggleSwitch";
+import * as api from '../utils/apiUtils.js'
 
 const TypingTest = (props) => {
-
     const [staticCountdown, setStaticCountdown] = useState(15);
-    const [timer, setTimer] = useState(15);
     const [countdown, setCountdown] = useState(1);
-    const [numEntries, setNumEntries] = useState(0);
-    const [WPMTime, setWPMTime] = useState(1);
 
     function reset() {
         props.setTimerActive(false);
         props.setIndex(0);
-        setTimer(staticCountdown);
+        props.setTimer(staticCountdown);
         setCountdown(1);
         props.newWords();
     }
@@ -42,36 +37,33 @@ const TypingTest = (props) => {
     const setCount = (count) => {
         if (!props.timerActive) {
             setStaticCountdown(count);
-            setTimer(count);
+            props.setTimer(count);
         }
     };
 
     useInterval(() => {
-        if (!props.inCountdown && timer === 0) {
+        if (!props.inCountdown && props.timer === 0) {
             reset();
+
         } else if (props.inCountdown) {
             if (countdown === 1) {
                 props.setInCountdown(false);
-                setNumEntries(0);
-                setWPMTime(staticCountdown);
+                props.setNumEntries(0);
+                props.setWPMTime(staticCountdown);
             } else {
                 setCountdown(countdown => countdown - 1)
             }
         } else {
-            setTimer(timer => timer - 1);
-            setNumEntries(props.index);
+            props.setTimer(timer => timer - 1);
+            props.setNumEntries(props.index);
         }
     }, props.timerActive ? 1000 : null);
-
-    const grossWPM = () => {
-        return (((numEntries / 5) / WPMTime) * 60).toFixed(2);
-    };
 
     return (
         <div className="container">
             <div className="timer-wrapper">
                 <div style={props.timerActive && !props.inCountdown ? { color: '#50E3C2', textShadow: ' 0px 0px 9px #50E3C2' } : { color: '#75749C' }} className="timer">
-                    {timer}s
+                    {props.timer}s
                 </div>
 
                 <div className="right-elements">
@@ -96,15 +88,15 @@ const TypingTest = (props) => {
 
                 {props.timerActive ? null : <div className="start-signal-wrapper">
 
-                    Correct Entries: {numEntries} <br />
-                    Your WPM: {grossWPM()} <br /> <br />
+                    Correct Entries: {props.numEntries} <br />
+                    Your WPM: {props.grossWPM()} <br /> <br />
                     <div className="start-signal">
                         Press Enter To Start!
                     </div>
                 </div>}
                 {props.timerActive && props.inCountdown && props.countdownToggleChecked ?
                     <div className="countdown">
-                        {countdown}
+                        Get Ready!
                     </div>
                     : null}
                 <div className="test-text">

@@ -55,6 +55,13 @@ export function callLogin(username, password) {
 }
 
 export function callRegisterAccount(email, username, password) {
+    account = {
+        account_id: -1,
+        display_name: "",
+        user_email: "",
+        password: "",
+        photo: -1
+    };
     var options = {
         method: 'POST',
         headers: {'Content-Type' : 'application/x-www-form-urlencoded'},
@@ -75,6 +82,7 @@ export function callRegisterAccount(email, username, password) {
             account.user_email = info[0].user_email;
             account.password = info[0].password;
             account.photo = info[0].photo;
+            getStats(account.account_id);
             console.log(account);
         })
         .finally(function(){
@@ -113,7 +121,7 @@ export function updateStats(avgWPM, topWPM, letterMisses, totalWords, totalTime,
             // console.log(account);
         })
         .finally(function(){
-            console.log(account);
+            console.log(options);
         })
         .catch(function (err) {
 
