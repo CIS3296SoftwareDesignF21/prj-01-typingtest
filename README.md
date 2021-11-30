@@ -2,9 +2,10 @@
 
 ### [Project Proposal](https://github.com/CIS3296SoftwareDesignF21/feedback-on-proposals-section-001-m-w-11-am/issues/14)
 ### [Change Log](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/main/CHANGELOG.md)
-### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week1.md)
-### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week2.md)
-### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/blob/Revise-ReadMe/Progress/Week3.md)
+### [Week 1 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week1.md)
+### [Week 2 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week2.md)
+### [Week 3 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week3.md)
+### [Week 4 Trello](https://github.com/CIS3296SoftwareDesignF21/prj-01-typingtest/tree/main/Progress/Week4.md)
 
 ## Project Description
 
