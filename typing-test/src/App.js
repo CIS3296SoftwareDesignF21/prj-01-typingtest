@@ -56,7 +56,10 @@ function App() {
 
 
   function newWords() {
-    setRandomWords(randWordsFunc({ exactly: 45, join: ' ' }));
+    const words = randWordsFunc({ exactly: 100, join: ' ' });
+    const letters = words.length;
+    console.log("letter", letters, "words", 100);
+    setRandomWords(words);
   }
 
   //INCREMENTS MISSED LETTER AND UPDATES ACCINFO
