@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "./static/css/main.8567bd25.chunk.css",
-    "main.js": "./static/js/main.5ef1c905.chunk.js",
-    "main.js.map": "./static/js/main.5ef1c905.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.3697e558.js",
-    "runtime-main.js.map": "./static/js/runtime-main.3697e558.js.map",
-    "static/css/2.ab75b8d7.chunk.css": "./static/css/2.ab75b8d7.chunk.css",
-    "static/js/2.bbf689fe.chunk.js": "./static/js/2.bbf689fe.chunk.js",
-    "static/js/2.bbf689fe.chunk.js.map": "./static/js/2.bbf689fe.chunk.js.map",
-    "static/js/3.6a2f79f5.chunk.js": "./static/js/3.6a2f79f5.chunk.js",
-    "static/js/3.6a2f79f5.chunk.js.map": "./static/js/3.6a2f79f5.chunk.js.map",
-    "index.html": "./index.html",
-    "static/css/2.ab75b8d7.chunk.css.map": "./static/css/2.ab75b8d7.chunk.css.map",
-    "static/css/main.8567bd25.chunk.css.map": "./static/css/main.8567bd25.chunk.css.map",
-    "static/js/2.bbf689fe.chunk.js.LICENSE.txt": "./static/js/2.bbf689fe.chunk.js.LICENSE.txt",
-    "static/media/keyboard_shell.27fae057.png": "./static/media/keyboard_shell.27fae057.png"
+    "main.css": "/prj-01-typingtest/static/css/main.8567bd25.chunk.css",
+    "main.js": "/prj-01-typingtest/static/js/main.5ef1c905.chunk.js",
+    "main.js.map": "/prj-01-typingtest/static/js/main.5ef1c905.chunk.js.map",
+    "runtime-main.js": "/prj-01-typingtest/static/js/runtime-main.2a94f752.js",
+    "runtime-main.js.map": "/prj-01-typingtest/static/js/runtime-main.2a94f752.js.map",
+    "static/css/2.ab75b8d7.chunk.css": "/prj-01-typingtest/static/css/2.ab75b8d7.chunk.css",
+    "static/js/2.6f7bb254.chunk.js": "/prj-01-typingtest/static/js/2.6f7bb254.chunk.js",
+    "static/js/2.6f7bb254.chunk.js.map": "/prj-01-typingtest/static/js/2.6f7bb254.chunk.js.map",
+    "static/js/3.6a2f79f5.chunk.js": "/prj-01-typingtest/static/js/3.6a2f79f5.chunk.js",
+    "static/js/3.6a2f79f5.chunk.js.map": "/prj-01-typingtest/static/js/3.6a2f79f5.chunk.js.map",
+    "index.html": "/prj-01-typingtest/index.html",
+    "static/css/2.ab75b8d7.chunk.css.map": "/prj-01-typingtest/static/css/2.ab75b8d7.chunk.css.map",
+    "static/css/main.8567bd25.chunk.css.map": "/prj-01-typingtest/static/css/main.8567bd25.chunk.css.map",
+    "static/js/2.6f7bb254.chunk.js.LICENSE.txt": "/prj-01-typingtest/static/js/2.6f7bb254.chunk.js.LICENSE.txt",
+    "static/media/keyboard_shell.27fae057.png": "/prj-01-typingtest/static/media/keyboard_shell.27fae057.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.3697e558.js",
+    "static/js/runtime-main.2a94f752.js",
     "static/css/2.ab75b8d7.chunk.css",
-    "static/js/2.bbf689fe.chunk.js",
+    "static/js/2.6f7bb254.chunk.js",
     "static/css/main.8567bd25.chunk.css",
     "static/js/main.5ef1c905.chunk.js"
   ]
