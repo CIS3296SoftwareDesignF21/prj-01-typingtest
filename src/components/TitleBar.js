@@ -12,7 +12,7 @@ const TitleBar = ({ loggedIn, openSignIn }) => {
 
                         {loggedIn ? null :
                             <div onClick={openSignIn} className="login-button">
-                                Login
+                               
                             </div>
                         }
 
