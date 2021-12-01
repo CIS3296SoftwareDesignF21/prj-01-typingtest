@@ -10,6 +10,7 @@ import Training from './components/Training';
 import Settings from './components/Settings.js';
 import LoadingSpinner from './components/LoadingSpinner';
 import * as api from './utils/apiUtils.js'
+import { MdSecurityUpdate } from 'react-icons/md';
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [WPMTime, setWPMTime] = useState(1);
   const [accountInfo, setAccountInfo] = useState({})
+
+  const [updateOnce, setUpdateOnce] = useState(false);
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
   const onLogin = async (account) => {
@@ -92,18 +95,19 @@ function App() {
 
       var totWords = accountInfo.total_words + (numEntries / 5);
       var totTime = accountInfo.total_time + WPMTime;
-
-      setAccountInfo({ ...accountInfo, total_words: totWords, total_time: totTime });
+      var avgWPM = (totWords / totTime) * 60;
+      //setAccountInfo({ ...accountInfo, total_words: totWords, total_time: totTime });
 
       if ((grossWPM > accountInfo.top_wpm) || (accountInfo.top_wpm == null)) {
-        console.log("Gross wpm:", grossWPM);
-        setAccountInfo({ ...accountInfo, top_wpm: grossWPM });
+        console.log("Account Top Pre-Update wpm:", accountInfo.top_wpm);
+        setAccountInfo({ ...accountInfo, top_wpm: grossWPM, total_words: totWords, total_time: totTime, avg_wpm: avgWPM});
+        console.log("Account Top Post-Update wpm:", accountInfo.top_wpm);
       } else {
         grossWPM = accountInfo.top_wpm;
+        setAccountInfo({ ...accountInfo, total_words: totWords, total_time: totTime, avg_wpm: avgWPM});
       }
-
-      var avgWPM = (totWords / totTime) * 60;
-      setAccountInfo({ ...accountInfo, avg_wpm: avgWPM });
+      
+      //setAccountInfo({ ...accountInfo, avg_wpm: avgWPM });
 
       console.log(avgWPM, totTime, totWords);
 
@@ -122,6 +126,7 @@ function App() {
     switch (event.key) {
 
       case "Enter":
+       // setUpdateOnce(true);
         console.log(countdownToggleChecked)
         if (!timerActive) {
           setTimerActive(true);
@@ -142,8 +147,8 @@ function App() {
             setIndex((index) => index + 1);
           } else if (event.key != randomWords[index] && loggedIn) {
             incrementMissed(randomWords[index]);
-            console.log(randomWords[index]);
-            console.log(accountInfo.letter_misses);
+            // console.log(randomWords[index]);
+            // console.log(accountInfo.letter_misses);
           }
         }
         break;
@@ -203,13 +208,19 @@ function App() {
 
   }, [])
 
+
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress);
 
-    if (timer === 0 && !timerActive && loggedIn) {
-      console.log("Hey this works");
-
+    // if (timer === 0 && !timerActive && loggedIn) {
+    //   updateAccInfo(numEntries, WPMTime, grossWPM());
+    // }
+    if(timer === 0 && !timerActive){
+      setUpdateOnce(true);
+    }
+    if (updateOnce && loggedIn) {
       updateAccInfo(numEntries, WPMTime, grossWPM());
+      setUpdateOnce(false);
     }
 
     return () => {
