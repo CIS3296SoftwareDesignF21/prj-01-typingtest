@@ -16,7 +16,7 @@ const StatKeyboard = ({ letter_misses }) => {
             total += map[el];
             max = (max < map[el]) ? map[el] : max;
         });
-        console.log(total);
+        //console.log(total);
     }
 
     const getColor = (key) => {
